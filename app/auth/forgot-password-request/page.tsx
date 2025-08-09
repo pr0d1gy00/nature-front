@@ -1,0 +1,40 @@
+import Button from '@/components/button'
+import Input from '@/components/input'
+import Link from 'next/link'
+import React from 'react'
+
+export default function page() {
+	return (
+		<section className="max-md:w-[100%] max-md:items-start flex flex-col items-center justify-center h-screen w-full bg-gradient-to-br from-[#fdfee7] via-[#fdfee7] to-[#32384549]">
+			<div className='max-md:w-full h-full flex flex-col items-center justify-center w-[60%]'>
+				<div className='max-md:w-[90%] max-md:items-start flex flex-col items-start w-[70%]'>
+
+						<h2 className='max-lg:text-6xl text-7xl font-bold text-[#7ed957]'>Ingresa tu correo para <br /><span className='font-extrabold text-[#35384b]'>cambiar tu contraseña!</span></h2>
+
+						<h3 className='text-xl font-bold text-[#]'><span className='font-extrabold text-[#7ed957]'>Recupera tu contraseña</span> </h3>
+
+						<h4 className='text-md text-[#35384b]'>Luego de enviar la solicitud, recibirás un correo con instrucciones para restablecer tu contraseña.</h4>
+
+					</div>
+					<form action="" className='max-md:w-[90%] w-[70%] flex flex-col items-start mt-6'>
+						<Input type="email" placeholder="Ingresa tu correo" />
+						<div className='flex items-center justify-between w-full mb-4'>
+							<label className='text-md text-[#35384b]'>¿Ya tienes un código?</label>
+							<Link href="/auth/reset-password" className='text-md font-bold text-[#35384b]'>Vamos a cambiar la contraseña</Link>
+						</div>
+						<div className="flex w-full items-center justify-center my-2">
+							<div className="flex-grow border-t-2 border-[#52f10ddf]"></div>
+							<span className="mx-4  text-[#35384b] font-bold">O</span>
+							<div className="flex-grow border-t-2 border-[#52f10ddf]"></div>
+						</div>
+						<div className='w-full flex items-center justify-center my-2'>
+
+							<Link href="/auth" className='text-2xl font-bold text-[#7ed957] text-center'>Vuelve a <span className='text-[#35384b]'>Login</span></Link>
+
+						</div>
+						<Button title="Enviar" />
+					</form>
+			</div>
+		</section>
+	)
+}

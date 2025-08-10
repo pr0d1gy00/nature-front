@@ -8,7 +8,7 @@ import Button from '@/components/button'
 import useAuth from '@/hooks/auth/useAuth'
 
 export default function AuthView() {
-	const { inputs } = useAuth();
+	const { inputs,handleChange } = useAuth();
 	return (
 		<section className="max-md:w-[100%] max-md:items-start flex flex-col items-center justify-center h-screen w-full bg-gradient-to-br from-[#fdfee7] via-[#fdfee7] to-[#32384549]">
 			<div className='max-md:w-full h-full flex w-[100%]'>
@@ -26,7 +26,7 @@ export default function AuthView() {
 					<form action="" className='max-md:w-[90%] w-[70%] flex flex-col items-start mt-6'>
 						{
 							inputs.map((input) => (
-								<Input key={input.id} type={input.type} placeholder={input.placeholder} />
+								<Input key={input.id} name={input.id} onChange={handleChange} type={input.type} placeholder={input.placeholder} />
 							))
 						}
 						<div className='flex items-center justify-between w-full mb-4'>

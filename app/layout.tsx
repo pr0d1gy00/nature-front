@@ -8,11 +8,6 @@ const lato = Lato({
   subsets: ["latin"],
 });
 
-// const geistMono = Geist_Mono({
-//   variable: "--font-geist-mono",
-//   subsets: ["latin"],
-// });
-
 export const metadata: Metadata = {
   title: "Nature",
   description: "Descubre nuestra tienda online de productos naturales: jabones, shampoos y más, elaborados con ingredientes ecológicos y saludables para el cuidado de humanos y mascotas. Vive una experiencia de bienestar y sostenibilidad con alternativas libres de químicos, amigables con el medio ambiente y pensadas para toda la familia. ¡Cuida tu piel y la de tus mascotas con lo mejor de la naturaleza!",

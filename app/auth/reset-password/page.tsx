@@ -1,14 +1,20 @@
 'use client'
 import Button from '@/components/button';
+import Divider from '@/components/divider';
 import Input from '@/components/input'
 import useResetPassword from '@/hooks/auth/resetPassword/useResetPassword'
 import Link from 'next/link';
 import React from 'react'
+import { InputKeys } from '@/hooks/auth/resetPassword/useResetPassword';
+import { Toaster } from 'react-hot-toast';
+import Layout from '@/components/layout';
 
 export default function Page() {
-	const { inputs,handleCodeChange,codeRefs,handleChange } = useResetPassword();
+	const { inputs,handleCodeChange,codeRefs,handleChange, dataReset, loading, handleSubmit, codeDigits } = useResetPassword();
 	return (
+		<Layout>
 		<section className="max-md:w-[100%] max-md:items-start flex flex-col items-center justify-center h-auto w-full p-6 bg-gradient-to-br from-[#fdfee7] via-[#fdfee7] to-[#32384549]">
+			<Toaster/>
 			<div className='max-md:w-full h-full flex flex-col items-center justify-center w-[60%]'>
 				<div className='max-md:w-[90%] max-md:items-start flex flex-col items-start w-[70%]'>
 
@@ -21,9 +27,9 @@ export default function Page() {
 						</h4>
 
 					</div>
-					<form action="" className='max-md:w-[90%] w-[70%] flex flex-col items-start mt-6'>
+					<form action="POST" onSubmit={handleSubmit} className='max-md:w-[90%] w-[70%] flex flex-col items-start mt-6'>
 						{inputs.map((input, index) => (
-							<Input key={index} onChange={handleChange} id={input.id} name={input.id} type={input.type} placeholder={input.placeholder}/>
+							<Input key={index} onChange={handleChange} id={input.id as InputKeys} name={input.id} type={input.type} placeholder={input.placeholder} value={dataReset[input.id] as InputKeys ?? ''} />
 						))}
 						<div className='flex justify-center gap-8 my-4'>
 							{[...Array(6)].map((_, i) => (
@@ -37,17 +43,19 @@ export default function Page() {
 								autoComplete="one-time-code"
 								inputMode="numeric"
 								name='code'
-
+								value={codeDigits[i]}
 								/>
 							))}
 						</div>
+						<Divider/>
 						<div className='flex items-center justify-between w-full mb-4'>
 							<label className='text-md text-[#35384b]'>No quieres cambiar contraseña?</label>
 							<Link href="/auth" className='text-md font-bold text-[#35384b]'>Vuelve al login</Link>
 						</div>
-						<Button title="Enviar" />
+						<Button title="Enviar" type="submit" disabled={loading} />
 					</form>
 			</div>
 		</section>
+		</Layout>
 	)
 }

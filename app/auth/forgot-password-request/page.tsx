@@ -2,6 +2,7 @@
 import Button from '@/components/button'
 import Divider from '@/components/divider';
 import Input from '@/components/input'
+import Layout from '@/components/layout';
 import useRequestResetPassword from '@/hooks/auth/requestResetPassword/useRequestResetPassword';
 import Link from 'next/link'
 import React from 'react'
@@ -10,6 +11,7 @@ import { Toaster } from 'react-hot-toast';
 export default function Page() {
 	const { handleChange, handleSubmit, email, loading } = useRequestResetPassword();
 	return (
+		<Layout>
 		<section className="max-md:w-[100%] max-md:items-start flex flex-col items-center justify-center h-screen w-full bg-gradient-to-br from-[#fdfee7] via-[#fdfee7] to-[#32384549]">
 			<Toaster/>
 			<div className='max-md:w-full h-full flex flex-col items-center justify-center w-[60%]'>
@@ -44,5 +46,6 @@ export default function Page() {
 					</form>
 			</div>
 		</section>
+		</Layout>
 	)
 }

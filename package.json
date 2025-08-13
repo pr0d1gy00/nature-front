@@ -9,11 +9,13 @@
     "lint": "next lint"
   },
   "dependencies": {
+    "@sandstreamdev/react-swipeable-list": "github:pr0d1gy00/react-swipeable-list",
     "axios": "^1.11.0",
     "next": "15.4.6",
     "react": "19.1.0",
     "react-dom": "19.1.0",
-    "react-hot-toast": "^2.5.2"
+    "react-hot-toast": "^2.5.2",
+    "sweetalert2": "^11.22.3"
   },
   "devDependencies": {
     "@eslint/eslintrc": "^3",

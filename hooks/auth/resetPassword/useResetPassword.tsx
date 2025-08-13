@@ -36,7 +36,6 @@ export default function useResetPassword() {
 
 	const codeLength = 6;
 	const codeRefs = useRef<(HTMLInputElement | null)[]>([]);
-	console.log(dataReset)
 	const handleCodeChange = (e:React.ChangeEvent<HTMLInputElement>, idx:number)=>{
 		const value = e.target.value;
 		if(value.length === 1 && idx < codeLength - 1){
@@ -49,7 +48,6 @@ export default function useResetPassword() {
 	}
 	dataReset.code = codeDigits.join('');
 
-	console.log(dataReset)
 	const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
 		const { name, value } = e.target;
 		setDataReset((prevData) => ({
@@ -79,6 +77,7 @@ export default function useResetPassword() {
 			return;
 		}
 		try {
+			
 			const response = await axios.post('http://localhost:8000/api/nature/auth/reset-password', dataReset);
 			ShowSuccessAlert(response.data.message);
 			} catch (error) {

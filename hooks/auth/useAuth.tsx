@@ -36,7 +36,16 @@ export default function useAuth() {
 		email: "",
 		password: "",
 	});
-	const [dataUser, setDataUser] = useState<dataUserProps>(EMPTY_USER);
+	// Carga síncrona desde sessionStorage en el primer render
+	const [dataUser, setDataUser] = useState<dataUserProps>(() => {
+		if (typeof window === "undefined") return EMPTY_USER;
+		try {
+			const raw = sessionStorage.getItem("Login");
+			return raw ? (JSON.parse(raw) as dataUserProps) : EMPTY_USER;
+		} catch {
+			return EMPTY_USER;
+		}
+	});
 	const [loading, setLoading] = useState(false);
 	const inputs = [
 		{
@@ -110,13 +119,6 @@ export default function useAuth() {
 		};
 
 		window.addEventListener("storage", handleStorageChange);
-
-		// Inicializa el estado al montar
-		setDataUser(
-			sessionStorage.getItem("Login")
-				? (JSON.parse(sessionStorage.getItem("Login")!) as dataUserProps)
-				: EMPTY_USER
-		);
 
 		return () => {
 			window.removeEventListener(

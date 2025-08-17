@@ -6,34 +6,44 @@ import useLayout from '@/hooks/layout/useLayout';
 import { Toaster } from 'react-hot-toast';
 import ButtonOpenSidebarAdmin from './buttonOpenSidebarAdmin';
 import SidebarAdmin from './sidebarAdmin';
+import {motion} from 'motion/react';
 
 interface LayoutProps {
 	children: React.ReactNode;
 }
 
 export default function Layout({ children }: LayoutProps) {
-	const { showSidebar, setShowSidebar, showSidebarAdmin, setShowSidebarAdmin,showButtonAdmin } = useLayout();
+	const { showSidebar, setShowSidebar, showSidebarAdmin, setShowSidebarAdmin,showButtonAdmin,decoded } = useLayout();
 
 	return (
-		<main className="flex flex-col min-h-screen">
+		<motion.main animate={{ opacity: 1 }} className="flex flex-col min-h-screen overflow-x-hidden">
 			<Toaster />
-			{!showSidebar &&
-				<ButtonOpenSidebar setShowSidebar={setShowSidebar} />
-
-			}
+			{!showSidebar && (
+				<div className="fixed top-[3%] left-[2%] z-[1000]">
+					<ButtonOpenSidebar setShowSidebar={setShowSidebar} />
+				</div>
+			)}
 			{
-				showSidebar && <Sidebar setShowSidebar={setShowSidebar} />
+				showSidebar && !showSidebarAdmin && (
+					<div className="fixed top-[3%] left-[2%] z-[1000] w-auto h-auto">
+						<Sidebar setShowSidebar={setShowSidebar} />
+					</div>
+				)
 			}
 			{children}
-			{!showSidebarAdmin &&
-				<div className='absolute right-[8%] w-auto h-auto top-[3%]'>
+			{showButtonAdmin && !showSidebarAdmin && decoded?.role_id === 1 &&(
+								<div className="fixed top-[3%] right-[3%] z-[1000]">
+
 					<ButtonOpenSidebarAdmin setShowSidebarAdmin={setShowSidebarAdmin} />
 				</div>
-
-			}
+			)}
 			{
-				showSidebarAdmin && <SidebarAdmin setShowSidebarAdmin={setShowSidebarAdmin} />
+				showSidebarAdmin && !showSidebar && (
+					<div className="fixed top-[3%] right-[3%] z-[1000]">
+						<SidebarAdmin setShowSidebarAdmin={setShowSidebarAdmin} />
+					</div>
+				)
 			}
-		</main>
+		</motion.main>
 	)
 }

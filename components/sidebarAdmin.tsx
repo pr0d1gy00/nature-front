@@ -2,6 +2,8 @@ import React from 'react'
 import useSidebar from '@/hooks/sidebar/useSidebar'
 import OptionSidebar from './optionSidebar'
 import HeaderSidebarAdmin from './headerSidebarAdmin'
+import {motion} from 'motion/react';
+
 interface SidebarProps{
 	setShowSidebarAdmin:React.Dispatch<React.SetStateAction<boolean>>
 }
@@ -9,21 +11,47 @@ interface SidebarProps{
 export default function SidebarAdmin({setShowSidebarAdmin	}:SidebarProps) {
 	const {sidebarOptions} = useSidebar()
 	return (
-		<aside className='max-md:w-[70%] max-lg:w-[40%] w-[18%] h-[90%] rounded-2xl shadow-2xl bg-[#fdfee7] absolute top-[5%] right-[5%] p-4 flex flex-col items-start justify-start'>
+		<motion.aside
+			initial={{ x: '100%' }}
+			animate={{ x: 0 }}
+			exit={{ x: '100%' }}
+			transition={{ duration: 0.5 }}
+			className='max-md:w-[70%] max-lg:w-[40%] w-[18%] h-full rounded-2xl shadow-2xl bg-[#fdfee7] fixed top-0 right-0 p-4 flex flex-col items-start justify-start z-10'
+		>
 			<HeaderSidebarAdmin setShowSidebarAdmin={setShowSidebarAdmin} />
-			<h3 className='bg-[#35384b] p-2 rounded-xl text-[#fdfee7] font-bold text-sm mt-4 mb-4'>Aqui estan todas las opciones disponibles para los <span className='text-[#7ed957] font-extrabold'>NatureAdmin</span></h3>
+			<motion.h3
+				initial={{ opacity: 0, y: -20 }}
+				animate={{ opacity: 1, y: 0 }}
+				transition={{ duration: 0.5, delay: 0.2 }}
+				className='bg-[#35384b] p-2 rounded-xl text-[#fdfee7] font-bold text-sm mt-4 mb-4'
+			>
+				Aqui estan todas las opciones disponibles para los <span className='text-[#7ed957] font-extrabold'>NatureAdmin</span>
+			</motion.h3>
 
-			<nav className='flex flex-col items-center mt-5 overflow-y-auto w-full'>
+			<motion.nav
+				initial={{ opacity: 0 }}
+				animate={{ opacity: 1 }}
+				transition={{ duration: 0.5, delay: 0.4 }}
+				className='flex flex-col items-center mt-5 overflow-y-auto w-full h-full'
+			>
 
 				{
 					sidebarOptions.map((option, index) => (
-						<OptionSidebar key={index} index={index} option={option} />
+						<motion.div
+							key={index}
+							initial={{ opacity: 0, x: -20 }}
+							animate={{ opacity: 1, x: 0 }}
+							transition={{ duration: 0.3, delay: index * 0.1 }}
+							className='w-full'
+						>
+							<OptionSidebar index={index} option={option} />
+						</motion.div>
 					))
 				}
 
 
 
-			</nav>
-		</aside>
+			</motion.nav>
+		</motion.aside>
 	)
 }

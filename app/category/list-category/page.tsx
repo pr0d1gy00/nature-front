@@ -8,15 +8,28 @@ import {
 import "@sandstreamdev/react-swipeable-list/dist/styles.css";
 import Link from "next/link";
 import React from "react";
-import Swal from 'sweetalert2'
-
+import { motion } from "motion/react";
 
 export default function Page() {
-	const { allCategories,handleDelete,pushToEditPage } = useCategory();
+	const { allCategories, handleDelete, pushToEditPage } =
+		useCategory();
 	return (
 		<Layout>
-			<section className="max-md:w-[100%] max-md:items-center flex flex-col items-center min-h-screen h-[100%] w-full bg-gradient-to-br from-[#fdfee7] via-[#fdfee7] to-[#32384549]">
-				<div className="max-md:flex-col max-md:gap-8 max-md:items-start flex justify-evenly items-center w-full mt-12">
+			<motion.section
+				initial={{ opacity: 0 }}
+				animate={{ opacity: 1 }}
+				exit={{ opacity: 0 }}
+				transition={{ duration: 0.5 }}
+				whileInView={{ opacity: 1, y: 0 }}
+				className="max-md:w-[100%] max-md:items-center flex flex-col items-center min-h-screen h-[100%] w-full bg-gradient-to-br from-[#fdfee7] via-[#fdfee7] to-[#32384549]"
+			>
+				<motion.div
+					initial={{ y: -20, opacity: 0 }}
+					animate={{ y: 0, opacity: 1 }}
+					transition={{ duration: 0.5 }}
+					whileInView={{ opacity: 1, y: 0 }}
+					className="max-md:flex-col max-md:gap-8 max-md:items-start flex justify-evenly items-center w-full mt-12"
+				>
 					<h2 className="max-md:text-5xl max-md:mt-12 max-md:ml-4 text-6xl font-extrabold text-[#7ed957] break-words">
 						Todas tus{" "}
 						<span className="text-[#35384b] font-extrabold">
@@ -24,16 +37,37 @@ export default function Page() {
 						</span>
 					</h2>
 					<Link href="/category">
-						<button className="bg-[#7ed957] hover:bg-[#35384b4c] max-md:ml-4 text-white font-bold w-full py-2 h-14 px-4 rounded-xl">
+						<motion.button
+							whileHover={{ scale: 1.05 }}
+							whileTap={{ scale: 0.95 }}
+							whileInView={{ opacity: 1, y: 0 }}
+							className="bg-[#7ed957] hover:bg-[#35384b4c] max-md:ml-4 text-white font-bold w-full py-2 h-14 px-4 rounded-xl"
+						>
 							Crear categoría
-						</button>
+						</motion.button>
 					</Link>
-				</div>
-				<div className="max-md:w-[95%] flex flex-col items-center w-[70%] bg-[#fcf9d9] rounded-2xl py-8 px-4 mt-12">
+				</motion.div>
+				<motion.div
+					initial={{ opacity: 0 }}
+					animate={{ opacity: 1 }}
+					transition={{ duration: 0.5, delay: 0.2 }}
+					whileInView={{ opacity: 1, y: 0 }}
+					className="max-md:w-[95%] flex flex-col items-center w-[70%] bg-[#fcf9d9] rounded-2xl py-8 px-4 mt-12"
+				>
 					<SwipeableList threshold={0.4}>
-						{allCategories.map((category, index) => (
-							<div
+						{allCategories.length === 0 ? (
+							<h3 className="text-center text-3xl *:">No hay categorías disponibles</h3>
+						) :
+						allCategories.map((category, index) => (
+							<motion.div
 								key={category.id}
+								initial={{ opacity: 0, x: -20 }}
+								animate={{ opacity: 1, x: 0 }}
+								transition={{
+									duration: 0.3,
+									delay: index * 0.1,
+								}}
+								whileInView={{ opacity: 1, y: 0 }}
 								className={`py-4 w-full p-4 ${
 									index === 0 ? "rounded-t-xl" : ""
 								} ${
@@ -46,7 +80,11 @@ export default function Page() {
 									key={category.id}
 									threshold={0.4}
 									swipeLeft={{
-										action: () =>{pushToEditPage(category.id)},
+										action: () => {
+											pushToEditPage(
+												category.id
+											);
+										},
 										content: (
 											<div className="h-[100%] bg-[#7ed957] p-4 rounded-xl flex items-center justify-center">
 												<span className="text-white">
@@ -56,9 +94,9 @@ export default function Page() {
 										),
 									}}
 									swipeRight={{
-										action: () =>{
-												handleDelete(category.id)
-											},
+										action: () => {
+											handleDelete(category.id);
+										},
 										content: (
 											<div className="h-[100%] bg-red-600 p-4 rounded-xl flex items-center justify-center">
 												<span className="text-white">
@@ -77,11 +115,11 @@ export default function Page() {
 										{category.description}
 									</p>
 								</SwipeableListItem>
-							</div>
+							</motion.div>
 						))}
 					</SwipeableList>
-				</div>
-			</section>
+				</motion.div>
+			</motion.section>
 		</Layout>
 	);
 }

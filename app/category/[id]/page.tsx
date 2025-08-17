@@ -35,7 +35,7 @@ export default function Page() {
 								</span>
 							</h4>
 
-							{inputs.map((input) => (
+							{inputs.map((input,index) => (
 								<Input
 									key={input.id}
 									name={input.id}
@@ -43,6 +43,7 @@ export default function Page() {
 									placeholder={input.placeholder}
 									onChange={handleChange}
 									value={category[input.id] as InputKeys ?? ""}
+									index={index}
 								/>
 							))}
 							<Button title="Actualizar" type="submit"/>

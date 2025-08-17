@@ -2,11 +2,11 @@ import { ShowErrorAlert } from '@/components/alertError';
 import { DismissLoadingAlert, ShowLoadingAlert } from '@/components/alertLoading';
 import { ShowSuccessAlert } from '@/components/alertSuccess';
 import axios from 'axios';
-import React, { useEffect } from 'react'
+import { useEffect, useState } from 'react'
 
 export default function useRequestResetPassword() {
-	const [email, setEmail] = React.useState('');
-	const [loading, setLoading] = React.useState(false);
+	const [email, setEmail] = useState('');
+	const [loading, setLoading] = useState(false);
 	const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
 		setEmail(e.target.value);
 	};

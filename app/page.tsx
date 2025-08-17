@@ -5,6 +5,7 @@ import NatureHome from "../public/ImagenHomeNature.png";
 import Link from "next/link";
 import Faq, { FAQItem } from "@/components/faq";
 import Products from "@/components/products";
+import { motion } from "motion/react";
 
 const faqs: FAQItem[] = [
 	{
@@ -32,9 +33,28 @@ const faqs: FAQItem[] = [
 export default function Home() {
 	return (
 		<Layout>
-			<section className="max-md:flex-col flex items-center justify-center min-h-screen w-full h-full bg-gradient-to-br from-[#fdfee7] via-[#fdfee7] to-[#00000047]">
-				<div className="max-md:w-[90%] py-8 w-[50%] flex flex-col items-end justify-center h-auto">
-					<div className="flex flex-col items-center justify-center w-fit h-[80%]">
+			<motion.section
+				initial={{ opacity: 0 }}
+				whileInView={{ opacity: 1 }}
+				viewport={{ once: false, amount:0.1 }}
+				transition={{ duration: 0.5 }}
+				className="max-md:flex-col flex items-center justify-center min-h-screen w-full h-full bg-gradient-to-br from-[#fdfee7] via-[#fdfee7] to-[#00000047]"
+				id="home"
+			>
+				<motion.div
+					initial={{ x: -50, opacity: 0 }}
+					whileInView={{ x: 0, opacity: 1 }}
+					viewport={{ once: false, amount:0.1 }}
+					transition={{ duration: 0.5 }}
+					className="max-md:w-[90%] py-8 w-[50%] flex flex-col items-end justify-center h-auto"
+				>
+					<motion.div
+						initial={{ opacity: 0, y: -20 }}
+						whileInView={{ opacity: 1, y: 0 }}
+						viewport={{ once: false, amount:0.1 }}
+						transition={{ duration: 0.5, delay: 0.2 }}
+						className="flex flex-col items-center justify-center w-fit h-[80%]"
+					>
 						<h2 className="max-md:text-5xl mi-serifa text-6xl font-extrabold text-[#7ed957bd] mb-6 w-[80%] break-words">
 							Bienvenido a la experiencia de{" "}
 							<span className="max-md:text-6xl text-[#35384b] text-7xl">
@@ -46,25 +66,40 @@ export default function Home() {
 							</span>
 						</h2>
 						<h3 className="text-2xl font-bold text-[#35384b] mb-4 w-[80%]">
-							Es un lugar donde la belleza de la
-							naturaleza se encuentra con la innovación.
+							Es un lugar donde la belleza de la naturaleza se encuentra con la innovación.
 						</h3>
 						<h4 className="text-xl text-[#35384b] mb-4 w-[80%]">
-							Explora nuestra amplia gama de productos
-							orgánicos y sostenibles, diseñados para
-							mejorar tu vida diaria mientras cuidas del
-							planeta.
+							Explora nuestra amplia gama de productos orgánicos y sostenibles, diseñados para
+							mejorar tu vida diaria mientras cuidas del planeta.
 						</h4>
-					</div>
-					<div className="w-[90%] h-auto">
+					</motion.div>
+					<motion.div
+						initial={{ opacity: 0, y: 20 }}
+						whileInView={{ opacity: 1, y: 0 }}
+						viewport={{ once: false, amount:0.1 }}
+						transition={{ duration: 0.5, delay: 0.4 }}
+						className="w-[90%] h-auto"
+					>
 						<Link href="/store">
-							<button className="bg-[#d95757] hover:bg-[#e63838] text-white font-bold py-3 px-6 rounded-full transition-colors mt-4 border-none">
+							<motion.button
+								whileHover={{ scale: 1.05 }}
+								whileTap={{ scale: 0.95 }}
+								whileInView={{ opacity: 1 }}
+								viewport={{ once: false, amount:0.1 }}
+								className="bg-[#d95757] hover:bg-[#e63838] text-white font-bold py-3 px-6 rounded-full transition-colors mt-4 border-none"
+							>
 								Comprar ahora
-							</button>
+							</motion.button>
 						</Link>
-					</div>
-				</div>
-				<div className="max-md:hidden w-[50%] flex items-end justify-center h-auto">
+					</motion.div>
+				</motion.div>
+				<motion.div
+					initial={{ x: 50, opacity: 0 }}
+					whileInView={{ x: 0, opacity: 1 }}
+					viewport={{ once: false, amount:0.1 }}
+					transition={{ duration: 0.5 }}
+					className="max-md:hidden w-[50%] flex items-end justify-center h-auto"
+				>
 					<Image
 						src={NatureHome}
 						className="object-contain"
@@ -78,17 +113,29 @@ export default function Home() {
 							objectFit: "contain",
 						}}
 					/>
-				</div>
-			</section>
+				</motion.div>
+			</motion.section>
 			<Products />
-			<section className="flex flex-col items-center min-h-screen w-full h-auto bg-[#fdfee7]">
+			<motion.section
+				initial={{ opacity: 0 }}
+				whileInView={{ opacity: 1 }}
+				viewport={{ once: false, amount:0.1 }}
+				transition={{ duration: 0.5, delay: 0.2 }}
+				className="flex flex-col items-center min-h-screen w-full h-auto bg-[#fdfee7]"
+			>
 				<h2 className="max-md:text-5xl max-md:text-center text-6xl font-extrabold text-[#35384b] mb-12 break-words mt-16">
 					Preguntas frecuentes
 				</h2>
-				<div className="w-[70%] h-auto bg-[#fcf9d9] rounded-2xl p-4">
-					<Faq items={faqs} />
-				</div>
-			</section>
+				<motion.div
+					initial={{ opacity: 0, y: 20 }}
+					whileInView={{ opacity: 1, y: 0 }}
+					viewport={{ once: false, amount:0.1 }}
+					transition={{ duration: 0.5, delay: 0.4 }}
+					className="w-[70%] h-auto bg-[#fcf9d9] rounded-2xl p-4"
+				>
+				<Faq items={faqs} />
+				</motion.div>
+			</motion.section>
 		</Layout>
 	);
 }

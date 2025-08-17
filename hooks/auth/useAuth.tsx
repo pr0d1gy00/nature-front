@@ -7,15 +7,13 @@ import {
 	DismissLoadingAlert,
 	ShowLoadingAlert,
 } from "@/components/alertLoading";
+import { useRouter } from 'next/navigation'
 
 interface dataUserProps {
 	message: string;
 	token: string;
 	user: {
-		id: number;
-		email: string;
 		name: string;
-		role_id: number;
 	};
 }
 
@@ -23,20 +21,16 @@ const EMPTY_USER: dataUserProps = {
 	message: "",
 	token: "",
 	user: {
-		id: 0,
-		email: "",
 		name: "",
-		role_id: 0,
 	},
 };
 
 export default function useAuth() {
-	// This hook can be used to manage authentication state, such as user login, logout, and session management.
+	const router = useRouter();
 	const [dataLogin, setDataLogin] = useState({
 		email: "",
 		password: "",
 	});
-	// Carga síncrona desde sessionStorage en el primer render
 	const [dataUser, setDataUser] = useState<dataUserProps>(() => {
 		if (typeof window === "undefined") return EMPTY_USER;
 		try {
@@ -68,6 +62,7 @@ export default function useAuth() {
 			[name]: value,
 		}));
 	};
+
 	const handleSubmit = async (
 		e: React.FormEvent<HTMLFormElement>
 	) => {
@@ -93,20 +88,43 @@ export default function useAuth() {
 				dataLogin
 			);
 			ShowSuccessAlert(response.data.message);
-			// Persiste y actualiza estado inmediatamente (mismo tab)
 			sessionStorage.setItem("Login", JSON.stringify(response.data));
 			setDataUser(response.data as dataUserProps);
+			router.push("/");
 		} catch (error) {
 			if (axios.isAxiosError(error)) {
-				console.log(error);
-				ShowErrorAlert(error.response!.data.message);
+				ShowErrorAlert(error.response?.data.message);
 			}
 		} finally {
 			setLoading(false);
 		}
 	};
+	const handleLogout = async ()=>{
+		if (dataUser.token.length === 0) {
+			return
+		}
+		try {
+			const response = await axios.post("http://localhost:8000/api/nature/auth/logout", {}, {
+				headers: {
+					Authorization: `Bearer ${dataUser.token}`
+				}
+			});
+			if (response.status === 200) {
+				ShowSuccessAlert(response.data.message);
+				sessionStorage.removeItem("Login");
+				setDataUser(EMPTY_USER);
+				router.push("/");
+			}
+		} catch (error) {
+			if (axios.isAxiosError(error)) {
+				ShowErrorAlert(error.response?.data.message);
+			}
+		} finally {
+			setLoading(false);
+		}
 
 
+	}
 	useEffect(() => {
 		const handleStorageChange = (event: StorageEvent) => {
 			if (event.key === "Login") {
@@ -126,8 +144,7 @@ export default function useAuth() {
 				handleStorageChange
 			);
 		};
-	}, []);
-
+	}, [sessionStorage]);
 	useEffect(() => {
 		if (loading) {
 			ShowLoadingAlert("Realizando acción...");
@@ -144,5 +161,6 @@ export default function useAuth() {
 		handleSubmit,
 		loading,
 		dataUser,
+		handleLogout
 	};
 }

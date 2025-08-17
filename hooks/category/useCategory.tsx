@@ -10,6 +10,8 @@ import { useEffect, useState, useCallback } from "react";
 import useAuth from "../auth/useAuth";
 import { useParams, usePathname, useRouter } from "next/navigation";
 import Swal from "sweetalert2";
+import { DecodedToken } from "../layout/useLayout";
+import { jwtDecode } from "jwt-decode";
 
 export type InputKeys = "name" | "description";
 
@@ -27,7 +29,7 @@ interface Inputs {
 interface CategoryProps {
 	created_at: string;
 	description: string;
-	id: number;
+	id: string;
 	name: string;
 	slug: string;
 	updated_at: string;
@@ -43,7 +45,7 @@ export default function useCategory() {
 	const router = useRouter();
 	const [refresh, setRefresh] = useState(false); // Estado para forzar el useEffect
 	const pathname = usePathname(); // Obtiene la ruta actual
-
+	const [decoded, setDecoded] = useState<DecodedToken | null>(null);
 	const [allCategories, setAllCategories] = useState<
 		CategoryProps[]
 	>([]);
@@ -64,7 +66,12 @@ export default function useCategory() {
 	const { dataUser } = useAuth();
 
 	const token = (dataUser?.token ?? "").trim();
-
+		useEffect(() => {
+			if (token) {
+				const decodedToken = jwtDecode<DecodedToken>(token);
+				setDecoded(decodedToken);
+			}
+		}, [token]);
 	const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
 		const { name, value } = e.target;
 		setCategory((prevData) => ({
@@ -81,7 +88,7 @@ export default function useCategory() {
 			ShowErrorAlert("Por favor llena todos los campos");
 			return;
 		}
-		if (!dataUser?.user?.id) {
+		if (!decoded?.id) {
 			ShowErrorAlert("Por favor inicia sesión");
 			return;
 		}
@@ -94,7 +101,7 @@ export default function useCategory() {
 
 					{
 						...category,
-						id_user: dataUser?.user.id,
+						id_user: decoded?.id,
 					},
 					{
 						headers: {
@@ -108,8 +115,8 @@ export default function useCategory() {
 					`http://localhost:8000/api/nature/category/updateCategory/${id}`,
 					{
 						...category,
-						id_user: dataUser?.user.id,
-						id: Number(id),
+						id_user: decoded?.id,
+						id: id,
 					},
 					{
 						headers: {
@@ -137,7 +144,7 @@ export default function useCategory() {
 			setLoading(false);
 		}
 	};
-	const handleDelete = async (id: number) => {
+	const handleDelete = async (id: string) => {
 		await Swal.fire({
 			title: "Estas Seguro?",
 			text: "No podrás revertir esto!",
@@ -153,7 +160,7 @@ export default function useCategory() {
 				setLoading(true);
 				try {
 					const response = await axios.delete(
-						`http://localhost:8000/api/nature/category/deleteCategory/${id}`,
+						`http://localhost:8000/api/nature/category/deleteCategory/${id}/${decoded?.id}`,
 						{
 							headers: {
 								"Content-Type": "application/json",
@@ -178,13 +185,14 @@ export default function useCategory() {
 			}
 		});
 	};
-	const handleGetCategoryById = useCallback(async (id: number) => {
+	const handleGetCategoryById = useCallback(async (id: string) => {
 		// No hagas la petición sin token
 		if (!token) return;
 		setLoading(true);
 		try {
 			const response = await axios.get(
 				`http://localhost:8000/api/nature/category/getCategory/${id}`,
+
 				{
 					headers: {
 						"Content-Type": "application/json",
@@ -214,7 +222,7 @@ export default function useCategory() {
 		}
 	}, [token]);
 
-	const pushToEditPage = (id: number) => {
+	const pushToEditPage = (id: string) => {
 		router.push(`/category/${id}`);
 	};
 
@@ -240,6 +248,7 @@ export default function useCategory() {
 						},
 					}
 				);
+				console.log(response)
 				setAllCategories(response.data.categories);
 			} catch (error) {
 			if (axios.isAxiosError(error)) {
@@ -255,7 +264,7 @@ export default function useCategory() {
 	}, [pathname, token]);
 	useEffect(() => {
 		if (!id || !token) return;
-		handleGetCategoryById(Number(id));
+		handleGetCategoryById(id.toString());
 	}, [id, token, handleGetCategoryById]);
 	useEffect(() => {
 		if (loading) {

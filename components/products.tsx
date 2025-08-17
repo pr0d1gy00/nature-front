@@ -1,10 +1,17 @@
 import React from 'react'
 import CardPage from './cardPage'
+import {motion} from 'motion/react';
 
 export default function Products() {
   return (
-	<section className="flex flex-col items-center min-h-[100%] w-[100%] h-auto bg-[#fdfee7]">
-					<h2 className="max-md:text-5xl max-md:text-center text-6xl font-extrabold text-[#35384b] mb-6 mt-6 break-words">
+<motion.section
+				initial={{ opacity: 0 }}
+				whileInView={{ opacity: 1 }}
+				viewport={{ once: false, amount:0.1 }}
+				transition={{ duration: 0.5, delay: 0.2 }}
+				className="flex flex-col items-center min-h-screen w-full h-auto bg-[#fdfee7]"
+				id='products'
+			>					<h2 className="max-md:text-5xl max-md:text-center text-6xl font-extrabold text-[#35384b] mb-6 mt-6 break-words">
 						Nuestros productos
 					</h2>
 					<h3 className="text-2xl font-bold text-[#35384b] mb-8 mt-8 w-[80%]">
@@ -37,6 +44,6 @@ export default function Products() {
 
 						<div className="max-md:hidden absolute -right-12 top-1/2 -translate-y-1/2 w-24 h-24 bg-[#fdfee7] rounded-full"></div>
 					</div>
-				</section>
-  )
+				</motion.section>
+  );
 }

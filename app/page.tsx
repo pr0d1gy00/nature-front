@@ -34,25 +34,19 @@ export default function Home() {
 	return (
 		<Layout>
 			<motion.section
-				initial={{ opacity: 0 }}
-				whileInView={{ opacity: 1 }}
-				viewport={{ once: false, amount:0.1 }}
-				transition={{ duration: 0.5 }}
+
 				className="max-md:flex-col flex items-center justify-center min-h-screen w-full h-full bg-gradient-to-br from-[#fdfee7] via-[#fdfee7] to-[#00000047]"
 				id="home"
-			>
+			>v
+			
 				<motion.div
 					initial={{ x: -50, opacity: 0 }}
 					whileInView={{ x: 0, opacity: 1 }}
-					viewport={{ once: false, amount:0.1 }}
-					transition={{ duration: 0.5 }}
-					className="max-md:w-[90%] py-8 w-[50%] flex flex-col items-end justify-center h-auto"
+						className="max-md:w-[90%] py-8 w-[50%] flex flex-col items-end justify-center h-auto"
 				>
 					<motion.div
 						initial={{ opacity: 0, y: -20 }}
 						whileInView={{ opacity: 1, y: 0 }}
-						viewport={{ once: false, amount:0.1 }}
-						transition={{ duration: 0.5, delay: 0.2 }}
 						className="flex flex-col items-center justify-center w-fit h-[80%]"
 					>
 						<h2 className="max-md:text-5xl mi-serifa text-6xl font-extrabold text-[#7ed957bd] mb-6 w-[80%] break-words">
@@ -76,16 +70,12 @@ export default function Home() {
 					<motion.div
 						initial={{ opacity: 0, y: 20 }}
 						whileInView={{ opacity: 1, y: 0 }}
-						viewport={{ once: false, amount:0.1 }}
-						transition={{ duration: 0.5, delay: 0.4 }}
 						className="w-[90%] h-auto"
 					>
 						<Link href="/store">
 							<motion.button
 								whileHover={{ scale: 1.05 }}
 								whileTap={{ scale: 0.95 }}
-								whileInView={{ opacity: 1 }}
-								viewport={{ once: false, amount:0.1 }}
 								className="bg-[#d95757] hover:bg-[#e63838] text-white font-bold py-3 px-6 rounded-full transition-colors mt-4 border-none"
 							>
 								Comprar ahora

@@ -33,7 +33,7 @@ export default function Sidebar({ setShowSidebar }: SidebarProps) {
 				className="flex flex-col items-center mt-5 overflow-y-auto w-full h-full"
 			>
 				<Link
-					href="/category"
+					href="/store"
 					className="flex flex-col items-center w-full p-0"
 				>
 					<motion.button

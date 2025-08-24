@@ -12,6 +12,7 @@ import { useParams, usePathname, useRouter } from "next/navigation";
 import Swal from "sweetalert2";
 import { DecodedToken } from "../layout/useLayout";
 import { jwtDecode } from "jwt-decode";
+import { data } from "motion/react-client";
 
 export type InputKeys = "name" | "description";
 
@@ -26,7 +27,7 @@ interface Inputs {
 	name: string;
 	description: string;
 }
-interface CategoryProps {
+export interface CategoryProps {
 	created_at: string;
 	description: string;
 	id: string;
@@ -79,7 +80,7 @@ export default function useCategory() {
 			[name]: value,
 		}));
 	};
-
+	console.log(allCategories)
 	const handleSubmit = async (
 		e: React.FormEvent<HTMLFormElement>
 	) => {
@@ -101,7 +102,7 @@ export default function useCategory() {
 
 					{
 						...category,
-						id_user: decoded?.id,
+						id_user: dataUser.user.id,
 					},
 					{
 						headers: {
@@ -115,7 +116,7 @@ export default function useCategory() {
 					`http://localhost:8000/api/nature/category/updateCategory/${id}`,
 					{
 						...category,
-						id_user: decoded?.id,
+						id_user: dataUser.user.id,
 						id: id,
 					},
 					{
@@ -160,7 +161,7 @@ export default function useCategory() {
 				setLoading(true);
 				try {
 					const response = await axios.delete(
-						`http://localhost:8000/api/nature/category/deleteCategory/${id}/${decoded?.id}`,
+						`http://localhost:8000/api/nature/category/deleteCategory/${id}/${dataUser.user.id}`,
 						{
 							headers: {
 								"Content-Type": "application/json",
@@ -188,7 +189,13 @@ export default function useCategory() {
 	const handleGetCategoryById = useCallback(async (id: string) => {
 		// No hagas la petición sin token
 		if (!token) return;
+		const normalizedPath = (pathname || "").replace(/\/$/, "");
+
+		if(normalizedPath !== "/category") {
+			return
+		}
 		setLoading(true);
+
 		try {
 			const response = await axios.get(
 				`http://localhost:8000/api/nature/category/getCategory/${id}`,
@@ -229,10 +236,10 @@ export default function useCategory() {
 	const fetchCategories = useCallback(async () => {
 
 		const normalizedPath = (pathname || "").replace(/\/$/, "");
-		if (normalizedPath !== "/category/list-category") {
+		if (!normalizedPath.includes("category") && !normalizedPath.includes("products")) {
 			return;
 		}
-		// Espera a tener token válido antes de hacer la petición
+
 		if (!token) {
 			return;
 		}
@@ -262,6 +269,7 @@ export default function useCategory() {
 			setLoading(false);
 		}
 	}, [pathname, token]);
+	console.log(allCategories)
 	useEffect(() => {
 		if (!id || !token) return;
 		handleGetCategoryById(id.toString());

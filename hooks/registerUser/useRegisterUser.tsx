@@ -5,7 +5,7 @@ import axios from 'axios'
 import { useState } from 'react'
 import useAuth from '../auth/useAuth'
 
-export type InputKeys = 'name' | 'email' | 'password' | 'phone' | 'address';
+export type InputKeys = 'name' | 'dni' | 'email' | 'password' | 'phone' | 'address';
 
 export type InputConfig = {
 	id: InputKeys;
@@ -18,6 +18,7 @@ export default function useRegisterUser() {
 	const {dataUser}= useAuth()
 	const [registerData,setRegisterData]=useState({
 		name: "",
+		dni: "",
 		email: "",
 		password: "",
 		phone: "",
@@ -31,6 +32,12 @@ export default function useRegisterUser() {
 			label: "Nombre",
 			type: "text",
 			placeholder: "Ingresa tu nombre",
+		},
+		{
+			id: "dni",
+			label: "Identificación",
+			type: "text",
+			placeholder: "Ingresa tu número de identificación",
 		},
 		{
 			id: "email",
@@ -97,6 +104,7 @@ export default function useRegisterUser() {
 		} finally {
 			setRegisterData({
 				name: "",
+				dni: "",
 				email: "",
 				password: "",
 				phone: "",

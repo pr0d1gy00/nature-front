@@ -14,6 +14,7 @@ interface dataUserProps {
 	token: string;
 	user: {
 		name: string;
+		id: string;
 	};
 }
 
@@ -22,6 +23,7 @@ const EMPTY_USER: dataUserProps = {
 	token: "",
 	user: {
 		name: "",
+		id:""
 	},
 };
 
@@ -85,7 +87,11 @@ export default function useAuth() {
 		try {
 			const response = await axios.post(
 				"http://localhost:8000/api/nature/auth/login",
-				dataLogin
+				dataLogin,
+				{
+					withCredentials: true,
+				},
+
 			);
 			ShowSuccessAlert(response.data.message);
 			sessionStorage.setItem("Login", JSON.stringify(response.data));
@@ -122,9 +128,8 @@ export default function useAuth() {
 		} finally {
 			setLoading(false);
 		}
-
-
 	}
+
 	useEffect(() => {
 		const handleStorageChange = (event: StorageEvent) => {
 			if (event.key === "Login") {
@@ -144,7 +149,8 @@ export default function useAuth() {
 				handleStorageChange
 			);
 		};
-	}, [sessionStorage]);
+	}, []);
+
 	useEffect(() => {
 		if (loading) {
 			ShowLoadingAlert("Realizando acción...");

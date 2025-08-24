@@ -9,7 +9,7 @@ interface SidebarProps{
 }
 
 export default function SidebarAdmin({setShowSidebarAdmin	}:SidebarProps) {
-	const {sidebarOptions} = useSidebar()
+	const {sidebarOptionsAdmin} = useSidebar()
 	return (
 		<motion.aside
 			initial={{ x: '100%' }}
@@ -36,7 +36,7 @@ export default function SidebarAdmin({setShowSidebarAdmin	}:SidebarProps) {
 			>
 
 				{
-					sidebarOptions.map((option, index) => (
+					sidebarOptionsAdmin.map((option, index) => (
 						<motion.div
 							key={index}
 							initial={{ opacity: 0, x: -20 }}

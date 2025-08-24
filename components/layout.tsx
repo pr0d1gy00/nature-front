@@ -7,6 +7,7 @@ import { Toaster } from 'react-hot-toast';
 import ButtonOpenSidebarAdmin from './buttonOpenSidebarAdmin';
 import SidebarAdmin from './sidebarAdmin';
 import {motion} from 'motion/react';
+import { decryptId } from '@/helpers/decryptedId';
 
 interface LayoutProps {
 	children: React.ReactNode;
@@ -31,8 +32,8 @@ export default function Layout({ children }: LayoutProps) {
 				)
 			}
 			{children}
-			{showButtonAdmin && !showSidebarAdmin && decoded?.role_id === 1 &&(
-								<div className="fixed top-[3%] right-[3%] z-[1000]">
+			{showButtonAdmin && !showSidebarAdmin && parseInt(decryptId(decoded?.role_id.toString())) === parseInt(process.env.NEXT_PUBLIC_ROLE_ID_ADMIN!) && (
+				<div className="fixed top-[3%] right-[3%] z-[1000]">
 
 					<ButtonOpenSidebarAdmin setShowSidebarAdmin={setShowSidebarAdmin} />
 				</div>

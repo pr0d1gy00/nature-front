@@ -1,8 +1,8 @@
 "use client";
 import { useEffect, useState } from "react";
 import useAuth from "../auth/useAuth";
-import { tr } from "motion/react-client";
 import { jwtDecode } from "jwt-decode";
+import { decryptId } from '../../helpers/decryptedId';
 
 export interface DecodedToken {
 	id: string;
@@ -15,7 +15,11 @@ export default function useLayout() {
 	const [showSidebarAdmin, setShowSidebarAdmin] = useState(false);
 	const [showButtonAdmin, setShowButtonAdmin] = useState(false);
 	const { dataUser } = useAuth();
-	const [decoded, setDecoded] = useState<DecodedToken | null>(null);
+	const [decoded, setDecoded] = useState<DecodedToken>({
+		id: "",
+		email: "",
+		role_id: 0
+	});
 	const token = dataUser.token;
 
 	useEffect(() => {
@@ -26,13 +30,13 @@ export default function useLayout() {
 	}, [token]);
 
 	useEffect(() => {
-		if (decoded?.role_id === 1) {
+		if (parseInt(decryptId(decoded?.role_id.toString())) === parseInt(process.env.NEXT_PUBLIC_ROLE_ID_ADMIN!)) {
 			setShowButtonAdmin(true);
 		}
 	}, [decoded]);
 
 	useEffect(() => {
-		if (showSidebar && decoded?.role_id === 1) {
+		if (showSidebar && parseInt(decryptId(decoded?.role_id.toString())) === parseInt(process.env.NEXT_PUBLIC_ROLE_ID_ADMIN!)) {
 			setShowSidebarAdmin(false);
 			setShowButtonAdmin(true);
 		}

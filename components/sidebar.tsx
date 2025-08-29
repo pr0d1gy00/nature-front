@@ -8,6 +8,7 @@ import OptionSidebar from "./optionSidebar";
 import LoginIcon from "../public/icones/login.png";
 import LogoutIcon from "../public/icones/logout.png";
 import PersonIcon from "../public/icones/person.png";
+import CartShopping from "../public/icones/carrito-de-compras.png";
 import useAuth from "../hooks/auth/useAuth";
 import { motion } from "motion/react";
 
@@ -60,12 +61,35 @@ export default function Sidebar({ setShowSidebar }: SidebarProps) {
 					/>
 				))}
 				{dataUser.token.length > 0 ? (
+
+
 					<motion.div
 						animate={{ opacity: 1 }}
 						initial={{ opacity: 0 }}
 						exit={{ opacity: 0 }}
-						className="w-[90%] flex items-center justify-between mt-auto mb-4"
+						className="w-[90%] flex flex-col items-center justify-between mt-auto mb-4"
 					>
+						<Link
+						href={"/store/my-cart"}
+						className="w-[100%] bottom-0"
+					>
+						<motion.button
+							title="cart"
+							type="button"
+							className="w-[100%] bg-[#fcf9d9] rounded-lg mb-4 flex items-center gap-2 hover:bg-[#35384b4c] transition-colors p-2"
+						>
+							<Image
+								src={CartShopping}
+								alt="perfil"
+								className="w-8 h-8 object-contain"
+							/>
+							<span className="text-xl text-[#35384b]">
+								Tu carrito
+							</span>
+						</motion.button>
+					</Link>
+						<div className="flex items-center justify-between w-full">
+
 						<Link
 							href={""}
 							className="bg-[#fcf9d9] flex gap-2 items-center hover:bg-[#35384b4c] rounded-lg p-2 w-auto h-auto"
@@ -90,7 +114,10 @@ export default function Sidebar({ setShowSidebar }: SidebarProps) {
 								className="w-8 h-8 object-contain"
 							/>
 						</motion.button>
+
+						</div>
 					</motion.div>
+
 				) : (
 					<Link
 						href={"/auth"}

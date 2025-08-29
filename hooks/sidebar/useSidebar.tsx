@@ -5,6 +5,7 @@ import ContactIcon from '@/public/icones/contact.png'
 import HistoryIcon from '@/public/icones/play-button.png'
 import CategoryIcon from '@/public/icones/categoria.png'
 import MovementInventoryIcon from '@/public/icones/inventario-disponible.png'
+import OrdersIcon from '@/public/icones/entrega-de-pedidos.png'
 import InventoryIcon from '@/public/icones/package.png'
 import { useRouter } from 'next/navigation'
 
@@ -24,6 +25,7 @@ export default function useSidebar() {
 		{label: 'Categoria', icon: CategoryIcon, path: '/category/list-category'},
 		{label: 'Inventario', icon: InventoryIcon, path: '/inventory/list-inventory'},
 		{label: 'Movimientos', icon: MovementInventoryIcon, path: '/inventory/movement-inventory'},
+        {label: 'Mis pedidos', icon: OrdersIcon, path: '/orders/my-orders'},
 	]
 
 	return {

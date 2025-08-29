@@ -24,7 +24,7 @@ export async function middleware(req: NextRequest) {
 	const token = req.cookies.get("token")?.value;
 	console.log('[middleware] token present:', Boolean(token));
 	if (!token) {
-		const loginUrl = new URL("/auth/login", req.url);
+		const loginUrl = new URL("/auth/", req.url);
 		console.log('[middleware] no token -> redirect to login');
 		const r = NextResponse.redirect(loginUrl);
 		r.headers.set('x-middleware-reason', 'no_token');

@@ -187,7 +187,6 @@ export default function useCategory() {
 		});
 	};
 	const handleGetCategoryById = useCallback(async (id: string) => {
-		// No hagas la petición sin token
 		if (!token) return;
 		const normalizedPath = (pathname || "").replace(/\/$/, "");
 

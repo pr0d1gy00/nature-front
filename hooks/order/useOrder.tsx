@@ -122,13 +122,7 @@ export default function useOrder() {
     const [order, setOrder] = React.useState<createOrderProps>({
         user_id: dataUserExtractedToken.id,
         address: '',
-        data: localStorage.getItem('cart') ? JSON.parse(localStorage.getItem('cart') || '[]').map((item: {
-            product: Product,
-            quantity: number
-        }) => ({
-            product_id: item.product.id,
-            quantity: item.quantity
-        })) : []
+        data: []
     })
     const {setProductsCart} = useStore()
     const [allOrders, setAllOrders] = React.useState<OrdersResponse>({} as OrdersResponse);
@@ -460,6 +454,19 @@ export default function useOrder() {
         handleUpdateStatusOrder()
     },[handleUpdateStatusOrder])
 
+    useEffect(() => {
+        if (typeof window !== "undefined") {
+            setOrder(prev => ({
+                ...prev,
+                data: localStorage.getItem('cart')
+                    ? JSON.parse(localStorage.getItem('cart') || '[]').map((item: { product: Product, quantity: number }) => ({
+                        product_id: item.product.id,
+                        quantity: item.quantity
+                    }))
+                    : []
+            }));
+        }
+    }, []);
     return {
         handleChangeAddress,
         handleSubmitOrder,

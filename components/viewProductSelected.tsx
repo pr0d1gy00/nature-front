@@ -11,7 +11,12 @@ interface ViewProductSelectedProps {
     addToCart: (product: ProductsProps) => void
 }
 
-export default function ViewProductSelected({dataProductToSeeByUser,setSelectedMedia,selectedMedia,addToCart}:ViewProductSelectedProps) {
+export default function ViewProductSelected({
+                                                dataProductToSeeByUser,
+                                                setSelectedMedia,
+                                                selectedMedia,
+                                                addToCart
+                                            }: ViewProductSelectedProps) {
     return (
         <>
             <h2 className="text-2xl font-bold">
@@ -124,12 +129,15 @@ export default function ViewProductSelected({dataProductToSeeByUser,setSelectedM
                             ...dataProductToSeeByUser.product,
                             stock: dataProductToSeeByUser.product.inventory?.[0]?.stock ?? 0,
                             minimum_stock: dataProductToSeeByUser.product.inventory?.[0]?.minimun_stock ?? 0,
-                            inventory: dataProductToSeeByUser.product.inventory ?? [],
-
+                            inventory: (dataProductToSeeByUser.product.inventory ?? []).map(inv => ({
+                                ...inv,
+                                created_at: new Date(inv.created_at),
+                                updated_at: new Date(inv.updated_at),
+                            })),
                         };
                         addToCart(productToAdd);
                     }}
-                        className="mt-4 w-full h-12 bg-blue-500 text-white py-2 px-4 rounded-md">
+                            className="mt-4 w-full h-12 bg-blue-500 text-white py-2 px-4 rounded-md">
                         Agregar al carrito
                     </button>
                 </div>

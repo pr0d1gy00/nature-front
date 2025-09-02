@@ -119,7 +119,7 @@ export default function ViewProductSelected({dataProductToSeeByUser,setSelectedM
                             nacional
                         </p>
                     </div>
-                    <button onClick={() => addToCart(dataProductToSeeByUser.product)}
+                    <button onClick={() => addToCart(dataProductToSeeByUser.product as ProductsProps)}
                             className="mt-4 w-full h-12 bg-blue-500 text-white py-2 px-4 rounded-md">
                         Agregar al carrito
                     </button>

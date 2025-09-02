@@ -2,12 +2,13 @@ import React from 'react'
 import Image from "next/image";
 import ShipmentsIcon from "@/public/icones/entrega.png";
 import {Product, ProductResponse} from "@/hooks/store/useStore";
+import {ProductsProps} from "@/hooks/products/useProducts";
 
 interface ViewProductSelectedProps {
     dataProductToSeeByUser: ProductResponse
     setSelectedMedia: React.Dispatch<React.SetStateAction<string>>
     selectedMedia: string
-    addToCart: (product: Product) => void
+    addToCart: (product: ProductsProps) => void
 }
 
 export default function ViewProductSelected({dataProductToSeeByUser,setSelectedMedia,selectedMedia,addToCart}:ViewProductSelectedProps) {

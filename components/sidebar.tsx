@@ -91,7 +91,7 @@ export default function Sidebar({ setShowSidebar }: SidebarProps) {
 						<div className="flex items-center justify-between w-full">
 
 						<Link
-							href={""}
+							href={"/profile"}
 							className="bg-[#fcf9d9] flex gap-2 items-center hover:bg-[#35384b4c] rounded-lg p-2 w-auto h-auto"
 						>
 							<Image

@@ -9,12 +9,10 @@ import useOrder from "@/hooks/order/useOrder";
 
 export default function Page() {
     const {productsCart, handleDeleteProductOfCart, handleDecreaseQuantity, handleIncreaseQuantity, priceDolar} = useStore();
-    const {handleChangeAddress, handleSubmitOrder, getOrders}=useOrder()
+    const {handleChangeAddress, handleSubmitOrder}=useOrder()
     const subtotal = productsCart.reduce((acc, product) => {
         return acc + parseFloat(product.product.price) * product.quantity;
     }, 0);
-
-    console.log(getOrders)
 
     return (
         <Layout>

@@ -56,7 +56,6 @@ export default function CardPage() {
         <motion.button
           whileHover={{ scale: 1.1 }}
           whileTap={{ scale: 0.95 }}
-          onClick={() => console.log('oñaaaaa')}
           className="bg-[#ffffff] shadow-sm hover:bg-[#e95757] text-black font-bold py-2 px-4 rounded-full transition-colors w-[80%] mt-4 border-none"
         >
           Ver en Tienda

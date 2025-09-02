@@ -70,7 +70,7 @@ export interface ProductResponse {
     listProducts: Product[];
 }
 
-interface Comment {
+export interface Comment {
     id: number;
     product_id: number;
     calification_id: number;
@@ -149,6 +149,7 @@ export default function useStore() {
         product_id: id,
         comment: "",
     });
+    const [nameProductSearch, setNameProductSearch] = useState<string>("");
     const [categories, setCategories] = useState<CategoryProps[]>([]);
     const [filters, setFilters] = useState<{
         category: { id: string }[];
@@ -243,9 +244,10 @@ export default function useStore() {
             );
             setCalifications(response.data);
         } catch (error) {
-            console.log(error);
+            console.log('e');
         }
     };
+
     const addToCart = (product: Product) => {
 
         const cart = JSON.parse(localStorage.getItem("cart") || "[]");
@@ -270,7 +272,7 @@ export default function useStore() {
             );
             setPriceDollar(response.data.dolar);
         } catch (error) {
-            console.error("Error fetching exchange rate:", error);
+            console.error("Error fetching exchange rate:");
         }
     };
     const fetchProducts = useCallback(async () => {
@@ -289,18 +291,34 @@ export default function useStore() {
             }
         }
     }, []);
-
+    const getProductsByName = useCallback(async ()=>{
+        try {
+            if(nameProductSearch.trim() === ''){
+                await fetchProducts();
+                return
+            }
+            const response = await axios.get(
+                `${process.env.NEXT_PUBLIC_URL_BACKEND}/api/nature/store/getProductsByName/${nameProductSearch}`
+            );
+            setAllProducts(response.data.products);
+        }catch (error){
+            console.log('error')
+        }
+    },[nameProductSearch, fetchProducts])
     const handlePushPageProductSelected = (id: string) => {
         router.push(`/store/products/${id}`);
     };
+
     const fetchFilter = useCallback(async () => {
+
         if (
-            filters.category.length === 0 &&
             filters.price.gte === 0 &&
             filters.price.lte === 0
         ) {
             return;
         }
+
+        
         try {
             const response = await axios.post(
                 "http://localhost:8000/api/nature/store/getProductsByFilters",
@@ -358,7 +376,7 @@ export default function useStore() {
         } finally {
             setLoading(false);
         }
-    }, [id]);
+    }, [id, router]);
 
     const handleSubmitComment = async () => {
         try {
@@ -412,12 +430,11 @@ export default function useStore() {
                     }
                 }
             );
-            console.log(response)
             setAllComentsOfProduct(response.data);
         } catch (error) {
-            console.log(error)
+            console.log('e')
         }
-    }, []);
+    }, [id, token]);
     const fetchCategoriesStore = useCallback(async () => {
         try {
             const response = await axios.get(
@@ -462,22 +479,24 @@ export default function useStore() {
         getPriceDolar();
         getListOfCalificationComments();
         getAllComentsOfProduct();
+    }, [id,fetchProductToShowUser, getAllComentsOfProduct, getListOfCalificationComments]);
 
-    }, [id]);
+    useEffect(()=>{
+        getProductsByName()
+    },[getProductsByName])
+
     useEffect(() => {
         const handleStorageChange = (event: StorageEvent) => {
             if (event.key === 'cart') {
                 setProductsCart(JSON.parse(event.newValue || '[]'));
             }
         };
-
         window.addEventListener('storage', handleStorageChange);
 
         return () => {
             window.removeEventListener('storage', handleStorageChange);
         };
     }, []);
-    console.log(productsCart)
 
     return {
         handleCalificationClick,
@@ -504,5 +523,6 @@ export default function useStore() {
         handleDeleteProductOfCart,
         handleIncreaseQuantity,
         handleDecreaseQuantity,
+        setNameProductSearch
     };
 }

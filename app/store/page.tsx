@@ -19,7 +19,8 @@ export default function Page() {
         filters,
         handlePriceChange,
         priceDolar,
-        addToCart
+        addToCart,
+        setNameProductSearch
     } = useStore();
     const {width} = useScreenSize();
     return (
@@ -38,7 +39,7 @@ export default function Page() {
                         className="max-md:w-32 w-48 object-cover"/>
                     </div>
                     <div className="w-[70%] flex justify-start items-center">
-                        <SearchProduct/>
+                        <SearchProduct setNameProductSearch={setNameProductSearch} />
                     </div>
                 </div>
 

@@ -12,6 +12,8 @@ export default function Page() {
 		{ label: "Producto", key: "name" },
 		{ label: "Stock", key: "stock" },
 		{ label: "Stock minimo", key: "minimum_stock" },
+        { label: "Registrado", key: "created_at" },
+        { label: "Actualizado", key: "updated_at" },
 	];
 	const gridColsClass: Record<number, string> = {
 		1: "grid-cols-1",
@@ -25,7 +27,6 @@ export default function Page() {
 		9: "grid-cols-9",
 		10: "grid-cols-10",
 	};
-	console.log(movementInventory)
 	const colsClass = gridColsClass[columns.length] || "grid-cols-1";
 
 	return (
@@ -87,7 +88,7 @@ export default function Page() {
 									{inventory.map((inventory) => (
 										<div
 											key={inventory.id}
-											className={`grid ${colsClass} bg-[#35384b] text-[#fcf9d9] p-4 rounded-lg items-center font-bold gap-2 mb-2`}
+											className={`grid ${colsClass} bg-[#35384b] text-[#fcf9d9] p-2 items-center font-bold gap-2 border-b `}
 										>
 											<img
 												src={`http://localhost:8000${inventory.product.product_media[0]?.url}`}
@@ -95,7 +96,7 @@ export default function Page() {
 													inventory.product
 														.name
 												}
-												className="w-16 h-16 rounded-2xl"
+												className="w-16 h-16 rounded-sm"
 											/>
 											<span className="truncate">
 												{
@@ -111,6 +112,12 @@ export default function Page() {
 													inventory.minimun_stock
 												}
 											</span>
+                                            <span className="truncate">
+                                                {new Date(inventory.created_at).toLocaleDateString()}
+                                            </span>
+                                            <span className="truncate">
+                                                {new Date(inventory.updated_at).toLocaleDateString()}
+                                            </span>
 										</div>
 									))}
 								</motion.div>

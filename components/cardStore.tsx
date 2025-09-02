@@ -29,6 +29,7 @@ export default function CardStore({
                     <Image
                         width={100}
                         height={192}
+                        loading="lazy"
                         className="w-full h-full object-cover"
                         src={`${process.env.NEXT_PUBLIC_URL_BACKEND}${product.product_media[0]?.url}`}
                         alt={product.name}

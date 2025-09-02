@@ -42,9 +42,6 @@ export default function Page() {
 
 	} = useProducts();
 
-	console.log(selectedEdit, "selectedEdit");
-
-
 	const columns: Column[] = [
 		{ label: "Imagen", key: "image" },
 		{ label: "Nombre", key: "name" },
@@ -207,7 +204,7 @@ export default function Page() {
 											>
 												<div
 													key={product.id}
-													className={`grid ${colsClass} bg-[#35384b] text-[#fcf9d9] p-4 rounded-lg items-center font-bold gap-2 mb-2`}
+													className={`grid ${colsClass} bg-[#35384b] text-[#fcf9d9] p-2 items-center font-bold gap-2 border-b`}
 												>
 													<img
 														src={`http://localhost:8000${product.product_media[0]?.url}`}

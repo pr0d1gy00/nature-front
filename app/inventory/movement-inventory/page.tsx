@@ -13,6 +13,7 @@ export default function Page() {
 		{ label: "Cantidad", key: "quantity" },
 		{ label: "Tipo", key: "type" },
 		{ label: "Usuario", key: "user" },
+        { label: "Fecha", key: "date" },
 	];
 	const gridColsClass: Record<number, string> = {
 		1: "grid-cols-1",
@@ -26,7 +27,6 @@ export default function Page() {
 		9: "grid-cols-9",
 		10: "grid-cols-10",
 	};
-	console.log(movementInventory)
 	const colsClass = gridColsClass[columns.length] || "grid-cols-1";
 
 	return (
@@ -88,7 +88,7 @@ export default function Page() {
 									{movementInventory.map((inventory) => (
 										<div
 											key={inventory.id}
-											className={`grid ${colsClass} bg-[#35384b] text-[#fcf9d9] p-4 rounded-lg items-center font-bold gap-2 mb-2`}
+											className={`grid ${colsClass} bg-[#35384b] text-[#fcf9d9] p-2 border-b items-center font-bold gap-2`}
 										>
 											<img
 												src={`http://localhost:8000${inventory.product.product_media[0]?.url}`}
@@ -96,7 +96,7 @@ export default function Page() {
 													inventory.product
 														.name
 												}
-												className="w-16 h-16 rounded-2xl"
+												className="w-16 h-16 rounded-sm"
 											/>
 											<span className="truncate">
 												{
@@ -117,6 +117,9 @@ export default function Page() {
 													inventory.user.name
 												}
 											</span>
+                                            <span>
+                                                {new Date(inventory.created_at).toLocaleDateString()}
+                                            </span>
 										</div>
 									))}
 								</motion.div>

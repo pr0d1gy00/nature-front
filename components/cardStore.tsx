@@ -7,7 +7,7 @@ interface CardStoreProps {
     product: ProductsProps;
     handlePushPageProductSelected: (id: string) => void;
     priceDolar: number;
-    handleAddToCart: (product: Product) => void;
+    handleAddToCart: (product: ProductsProps) => void;
 }
 
 export default function CardStore({

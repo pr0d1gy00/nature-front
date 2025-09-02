@@ -49,7 +49,7 @@ export interface ProductsProps {
     name: string;
     description: string;
     price: string;
-    category: string;
+    category_id: string;
     offert: boolean;
     is_active: boolean;
     stock: number;
@@ -69,6 +69,9 @@ export interface ProductsProps {
         url: string;
         type: string;
     }[];
+    category: {
+        name: string;
+    };
 }
 
 export default function useProducts() {

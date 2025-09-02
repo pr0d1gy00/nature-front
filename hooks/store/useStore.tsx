@@ -95,7 +95,7 @@ export default function useStore() {
     );
     const [allComentsOfProduct, setAllComentsOfProduct] = useState<Comment[]>([]);
     const [refresh, setRefresh] = useState(false);
-    const [productsCart, setProductsCart] = useState<{product:Product, quantity:number}[]>(
+    const [productsCart, setProductsCart] = useState<{product:ProductsProps, quantity:number}[]>(
 
         localStorage.getItem('cart') ? JSON.parse(localStorage.getItem('cart') || '[]') : []
     );
@@ -248,7 +248,7 @@ export default function useStore() {
         }
     };
 
-    const addToCart = (product: Product) => {
+    const addToCart = (product: ProductsProps) => {
 
         const cart = JSON.parse(localStorage.getItem("cart") || "[]");
         const existingProduct = cart.find((item: {

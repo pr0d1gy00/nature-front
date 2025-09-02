@@ -208,7 +208,7 @@ export default function Page() {
 													className={`grid ${colsClass} bg-[#35384b] text-[#fcf9d9] p-2 items-center font-bold gap-2 border-b`}
 												>
 													<Image
-														src={`http://localhost:8000${product.product_media[0]?.url}`}
+														src={`${process.env.NEXT_PUBLIC_URL_BACKEND}+${product.product_media[0]?.url}`}
 														alt={
 															product.name
 														}

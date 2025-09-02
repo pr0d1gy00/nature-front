@@ -2,7 +2,7 @@ import { NextResponse } from "next/server";
 import type { NextRequest } from "next/server";
 
 const BACKEND_VERIFY =
-	process.env.BACKEND_VERIFY_URL ?? "http://localhost:8000";
+	process.env.NEXT_PUBLIC_URL_BACKEND ?? "http://localhost:8000";
 
 export async function middleware(req: NextRequest) {
 	const { pathname } = req.nextUrl;

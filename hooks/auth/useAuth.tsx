@@ -89,7 +89,7 @@ export default function useAuth() {
         setLoading(true);
         try {
             const response = await axios.post(
-                "http://localhost:8000/api/nature/auth/login",
+                `${process.env.NEXT_PUBLIC_URL_BACKEND}/api/nature/auth/login`,
                 dataLogin,
                 {
                     withCredentials: true,
@@ -112,7 +112,7 @@ export default function useAuth() {
             return
         }
         try {
-            const response = await axios.post("http://localhost:8000/api/nature/auth/logout", {}, {
+            const response = await axios.post(`${process.env.NEXT_PUBLIC_URL_BACKEND}/api/nature/auth/logout`, {}, {
                 headers: {
                     Authorization: `Bearer ${dataUser.token}`
                 }

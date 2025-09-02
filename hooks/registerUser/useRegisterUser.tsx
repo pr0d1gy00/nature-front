@@ -85,7 +85,7 @@ export default function useRegisterUser() {
             return;
         }
         try {
-            const response = await axios.post('http://localhost:8000/api/nature/user/createUser', registerData, {
+            const response = await axios.post(`${process.env.NEXT_PUBLIC_URL_BACKEND}/api/nature/user/createUser`, registerData, {
                 headers: {
                     "Content-Type": "application/json",
                     "Authorization": `Bearer ${token}`

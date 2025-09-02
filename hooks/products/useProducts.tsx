@@ -279,7 +279,7 @@ export default function useProducts() {
             setLoading(true);
             try {
                 const response = await axios.post(
-                    "http://localhost:8000/api/nature/product/createProduct",
+                    `${process.env.NEXT_PUBLIC_URL_BACKEND}/api/nature/product/createProduct`,
                     formData,
                     {
                         method: "POST",
@@ -357,7 +357,7 @@ export default function useProducts() {
             setLoading(true);
             try {
                 const response = await axios.put(
-                    `http://localhost:8000/api/nature/product/modifyProduct/${id}`,
+                    `${process.env.NEXT_PUBLIC_URL_BACKEND}/api/nature/product/modifyProduct/${id}`,
                     formData,
                     {
                         method: "PUT",
@@ -400,7 +400,7 @@ export default function useProducts() {
         setLoading(true);
         try {
             const response = await axios.get(
-                `http://localhost:8000/api/nature/product/getStockProduct/${id}`,
+                `${process.env.NEXT_PUBLIC_URL_BACKEND}/api/nature/product/getStockProduct/${id}`,
                 {
                     headers: {
                         Authorization: `Bearer ${token}`,
@@ -431,7 +431,7 @@ export default function useProducts() {
 
             try {
                 const response = await axios.get(
-                    `http://localhost:8000/api/nature/product/getProduct/${id}`,
+                    `${process.env.NEXT_PUBLIC_URL_BACKEND}/api/nature/product/getProduct/${id}`,
                     {
                         headers: {
                             Authorization: `Bearer ${token}`,
@@ -472,7 +472,7 @@ export default function useProducts() {
 
         try {
             const response = await axios.put(
-                `http://localhost:8000/api/nature/product/modifyStockProduct`,
+                `${process.env.NEXT_PUBLIC_URL_BACKEND}/api/nature/product/modifyStockProduct`,
 
                 {
                     id: idInventory,
@@ -516,7 +516,7 @@ export default function useProducts() {
                 setLoading(true);
                 try {
                     const response = await axios.delete(
-                        `http://localhost:8000/api/nature/product/deleteProduct/${id}/${dataUser.user.id}`,
+                        `${process.env.NEXT_PUBLIC_URL_BACKEND}/api/nature/product/deleteProduct/${id}/${dataUser.user.id}`,
                         {
                             headers: {
                                 "Content-Type": "application/json",
@@ -544,7 +544,7 @@ export default function useProducts() {
     const fetchProducts = useCallback(async () => {
         try {
             const response = await axios.get(
-                "http://localhost:8000/api/nature/product/getProducts",
+                `${process.env.NEXT_PUBLIC_URL_BACKEND}/api/nature/product/getProducts`,
                 {
                     headers: {
                         Authorization: `Bearer ${token}`,

@@ -98,7 +98,7 @@ export default function useCategory() {
             setLoading(true);
             if (!id) {
                 response = await axios.post(
-                    "http://localhost:8000/api/nature/category/createCategory",
+                   `${process.env.NEXT_PUBLIC_URL_BACKEND}/api/nature/category/createCategory`,
 
                     {
                         ...category,
@@ -113,7 +113,7 @@ export default function useCategory() {
                 );
             } else {
                 response = await axios.put(
-                    `http://localhost:8000/api/nature/category/updateCategory/${id}`,
+                    `${process.env.NEXT_PUBLIC_URL_BACKEND}/api/nature/category/updateCategory/${id}`,
                     {
                         ...category,
                         id_user: dataUser.user.id,
@@ -161,7 +161,7 @@ export default function useCategory() {
                 setLoading(true);
                 try {
                     const response = await axios.delete(
-                        `http://localhost:8000/api/nature/category/deleteCategory/${id}/${dataUser.user.id}`,
+                        `${process.env.NEXT_PUBLIC_URL_BACKEND}/api/nature/category/deleteCategory/${id}/${dataUser.user.id}`,
                         {
                             headers: {
                                 "Content-Type": "application/json",
@@ -197,7 +197,7 @@ export default function useCategory() {
 
         try {
             const response = await axios.get(
-                `http://localhost:8000/api/nature/category/getCategory/${id}`,
+                `${process.env.NEXT_PUBLIC_URL_BACKEND}/api/nature/category/getCategory/${id}`,
 
                 {
                     headers: {
@@ -246,7 +246,7 @@ export default function useCategory() {
         setLoading(true);
         try {
             const response = await axios.get(
-                "http://localhost:8000/api/nature/category/getCategories",
+                `${process.env.NEXT_PUBLIC_URL_BACKEND}/api/nature/category/getCategories`,
                 {
                     headers: {
                         "Content-Type": "application/json",

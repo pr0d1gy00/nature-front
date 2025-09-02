@@ -92,7 +92,7 @@ export default function Page() {
 											className={`grid ${colsClass} bg-[#35384b] text-[#fcf9d9] p-2 border-b items-center font-bold gap-2`}
 										>
 											<Image
-												src={`http://localhost:8000${inventory.product.product_media[0]?.url}`}
+												src={`${process.env.NEXT_PUBLIC_URL_BACKEND}+${inventory.product.product_media[0]?.url}`}
 												alt={
 													inventory.product
 														.name

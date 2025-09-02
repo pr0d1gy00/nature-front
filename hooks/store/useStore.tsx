@@ -276,7 +276,7 @@ export default function useStore() {
     const fetchProducts = useCallback(async () => {
         try {
             const response = await axios.get(
-                "http://localhost:8000/api/nature/store/getProductsToShowStore"
+                `${process.env.NEXT_PUBLIC_URL_BACKEND}/api/nature/store/getProductsToShowStore`
             );
             setAllProducts(response.data.products);
         } catch (error) {
@@ -319,7 +319,7 @@ export default function useStore() {
         
         try {
             const response = await axios.post(
-                "http://localhost:8000/api/nature/store/getProductsByFilters",
+                `${process.env.NEXT_PUBLIC_URL_BACKEND}/api/nature/store/getProductsByFilters`,
                 {
                     filters: {
                         category: {
@@ -352,7 +352,7 @@ export default function useStore() {
 
         try {
             const response = await axios.post(
-                `http://localhost:8000/api/nature/store/getProductToShow`,
+                `${process.env.NEXT_PUBLIC_URL_BACKEND}/api/nature/store/getProductToShow`,
                 {
                     product_id: id,
                 }
@@ -436,7 +436,7 @@ export default function useStore() {
     const fetchCategoriesStore = useCallback(async () => {
         try {
             const response = await axios.get(
-                "http://localhost:8000/api/nature/store/getCategoriesForFilters"
+                `${process.env.NEXT_PUBLIC_URL_BACKEND}/api/nature/store/getCategoriesForFilters`
             );
             setCategories(response.data.categories);
         } catch (error) {

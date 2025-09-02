@@ -25,7 +25,7 @@ export default function useRequestResetPassword() {
         }
         try {
             setLoading(true);
-            await axios.post('http://localhost:8000/api/nature/auth/request-password-reset', {email}).then((response) => {
+            await axios.post(`${process.env.NEXT_PUBLIC_URL_BACKEND}/api/nature/auth/request-password-reset`, {email}).then((response) => {
                 ShowSuccessAlert(response.data.message);
             });
 

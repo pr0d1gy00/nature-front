@@ -119,8 +119,15 @@ export default function ViewProductSelected({dataProductToSeeByUser,setSelectedM
                             nacional
                         </p>
                     </div>
-                    <button onClick={() => addToCart(dataProductToSeeByUser.product as ProductsProps)}
-                            className="mt-4 w-full h-12 bg-blue-500 text-white py-2 px-4 rounded-md">
+                    <button onClick={() => {
+                        const productToAdd: ProductsProps = {
+                            ...dataProductToSeeByUser.product,
+                            stock: dataProductToSeeByUser.product.inventory?.[0]?.stock ?? 0,
+                            minimum_stock: dataProductToSeeByUser.product.inventory?.[0]?.minimum_stock ?? 0,
+                        };
+                        addToCart(productToAdd);
+                    }}
+                        className="mt-4 w-full h-12 bg-blue-500 text-white py-2 px-4 rounded-md">
                         Agregar al carrito
                     </button>
                 </div>

@@ -2,7 +2,7 @@ import React from 'react'
 import Modal from "@/components/modal";
 import Button from "@/components/button";
 import {Order} from "@/hooks/order/useOrder";
-import {formatDate, getStatusColor} from "@/app/orders/my-orders/page";
+import {formatDate, getStatusColor} from "@/utils/order"
 import useAuth from "@/hooks/auth/useAuth";
 import {jwtDecode} from "jwt-decode";
 import {DecodedToken} from "@/hooks/layout/useLayout";

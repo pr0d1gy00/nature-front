@@ -124,6 +124,8 @@ export default function ViewProductSelected({dataProductToSeeByUser,setSelectedM
                             ...dataProductToSeeByUser.product,
                             stock: dataProductToSeeByUser.product.inventory?.[0]?.stock ?? 0,
                             minimum_stock: dataProductToSeeByUser.product.inventory?.[0]?.minimum_stock ?? 0,
+                            inventory: dataProductToSeeByUser.product.inventory ?? [],
+
                         };
                         addToCart(productToAdd);
                     }}

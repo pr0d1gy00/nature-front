@@ -1,7 +1,7 @@
 "use client";
 import Layout from "@/components/layout";
 import React from "react";
-import { motion } from "framer-motion";
+import { motion } from "motion/react";
 import useInventory from "@/hooks/inventory/useInventory";
 import { Column } from "@/app/products/list-products/page";
 

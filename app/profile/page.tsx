@@ -1,6 +1,6 @@
 "use client"
 import {Mail, Phone, MapPin} from "lucide-react";
-import {motion} from "framer-motion";
+import {motion} from "motion/react";
 import useProfile from "@/hooks/user/useProfile";
 import Image from "next/image";
 import Layout from "@/components/layout";

@@ -2,7 +2,7 @@
 import React from 'react';
 import useOrder from "@/hooks/order/useOrder"; // Asegúrate de exportar 'Order' desde tu hook
 import Layout from "@/components/layout";
-import {motion} from "framer-motion";
+import {motion} from "motion/react";
 import Modal from "@/components/modal";
 import useAuth from "@/hooks/auth/useAuth";
 import {DecodedToken} from "@/hooks/layout/useLayout";
@@ -10,6 +10,7 @@ import {jwtDecode} from "jwt-decode";
 import {decryptId} from "@/helpers/decryptedId";
 import Button from "@/components/button";
 import ShowDetailsOrderModal from "@/components/showDetailsOrderModal";
+
 import {formatDate, getStatusColor} from "@/utils/order";
 export default function Page() {
     const {

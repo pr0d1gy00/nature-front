@@ -1,7 +1,7 @@
 import Image from 'next/image';
 import React from 'react';
 import JabonImagen from "../public/JabonCard.png";
-import { motion } from 'framer-motion';
+import { motion } from 'motion/react';
 
 export default function CardPage() {
   return (

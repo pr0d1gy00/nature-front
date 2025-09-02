@@ -123,7 +123,7 @@ export default function ViewProductSelected({dataProductToSeeByUser,setSelectedM
                         const productToAdd: ProductsProps = {
                             ...dataProductToSeeByUser.product,
                             stock: dataProductToSeeByUser.product.inventory?.[0]?.stock ?? 0,
-                            minimum_stock: dataProductToSeeByUser.product.inventory?.[0]?.minimum_stock ?? 0,
+                            minimum_stock: dataProductToSeeByUser.product.inventory?.[0]?.minimun_stock ?? 0,
                             inventory: dataProductToSeeByUser.product.inventory ?? [],
 
                         };

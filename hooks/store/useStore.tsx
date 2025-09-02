@@ -20,6 +20,7 @@ import {jwtDecode} from "jwt-decode";
 import {DecodedToken} from "../layout/useLayout";
 import {get} from "http";
 import {AlertAddToCart} from "@/components/alertAddToCart";
+import dynamic from "next/dynamic";
 
 export interface ProductMedia {
     id: number;
@@ -86,7 +87,6 @@ export interface Comment {
         value: number;
     }
 }
-
 export default function useStore() {
     const router = useRouter();
     const {id} = useParams();
@@ -95,10 +95,8 @@ export default function useStore() {
     );
     const [allComentsOfProduct, setAllComentsOfProduct] = useState<Comment[]>([]);
     const [refresh, setRefresh] = useState(false);
-    const [productsCart, setProductsCart] = useState<{product:ProductsProps, quantity:number}[]>(
+    const [productsCart, setProductsCart] = useState<{product:ProductsProps, quantity:number}[]>([]);
 
-        localStorage.getItem('cart') ? JSON.parse(localStorage.getItem('cart') || '[]') : []
-    );
     const configCalifications = [
         {
             value: 1,
@@ -486,17 +484,27 @@ export default function useStore() {
     },[getProductsByName])
 
     useEffect(() => {
-        const handleStorageChange = (event: StorageEvent) => {
-            if (event.key === 'cart') {
-                setProductsCart(JSON.parse(event.newValue || '[]'));
-            }
-        };
-        window.addEventListener('storage', handleStorageChange);
+        if (typeof window === "undefined") {
+            return
+        }
+        else {
+            setProductsCart(
+                localStorage.getItem('cart') ? JSON.parse(localStorage.getItem('cart') || '[]') : []
+            );
 
-        return () => {
-            window.removeEventListener('storage', handleStorageChange);
-        };
+            const handleStorageChange = (event: StorageEvent) => {
+                if (event.key === 'cart') {
+                    setProductsCart(JSON.parse(event.newValue || '[]'));
+                }
+            };
+            window.addEventListener('storage', handleStorageChange);
+
+            return () => {
+                window.removeEventListener('storage', handleStorageChange);
+            };
+        }
     }, []);
+
 
     return {
         handleCalificationClick,

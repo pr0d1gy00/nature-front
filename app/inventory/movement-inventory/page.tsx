@@ -4,6 +4,7 @@ import React from "react";
 import { motion } from "motion/react";
 import useInventory from "@/hooks/inventory/useInventory";
 import { Column } from "@/app/products/list-products/page";
+import Image from "next/image";
 
 export default function Page() {
 	const {  movementInventory } = useInventory();
@@ -90,7 +91,7 @@ export default function Page() {
 											key={inventory.id}
 											className={`grid ${colsClass} bg-[#35384b] text-[#fcf9d9] p-2 border-b items-center font-bold gap-2`}
 										>
-											<img
+											<Image
 												src={`http://localhost:8000${inventory.product.product_media[0]?.url}`}
 												alt={
 													inventory.product

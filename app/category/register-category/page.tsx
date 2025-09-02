@@ -5,7 +5,6 @@ import Layout from "@/components/layout";
 import useCategory, { InputKeys } from "@/hooks/category/useCategory";
 import React from "react";
 import { motion } from "motion/react";
-import Protected from "@/components/protected";
 
 const formVariants = {
 	hidden: { opacity: 0, y: 50 },

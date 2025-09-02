@@ -1,14 +1,11 @@
 "use client";
 import Layout from "@/components/layout";
-import React, {useState} from "react";
+import React from "react";
 import {motion} from "motion/react";
 import useStore from "@/hooks/store/useStore";
 import Image from "next/image";
-import SearchProduct from "@/components/searchProduct";
 import NatureLogo from "../../../../public/486665410_674284775067239_7863679628695787988_n (1)-Photoroom.png";
-import ShipmentsIcon from "../../../../public/icones/entrega.png";
 import useAuth from "@/hooks/auth/useAuth";
-import {UserCircleIcon} from "@heroicons/react/24/solid";
 import CommentProductStore from "@/components/commentProductStore";
 import LetCommentUser from "@/components/letCommentUser";
 import ViewProductSelected from "@/components/viewProductSelected";

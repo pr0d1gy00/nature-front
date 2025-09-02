@@ -1,7 +1,6 @@
 import useAuth from "@/hooks/auth/useAuth";
 import { DecodedToken } from "@/hooks/layout/useLayout";
 import { jwtDecode } from "jwt-decode";
-import { data } from "motion/react-m";
 import { useRouter } from "next/navigation";
 import React, { useEffect } from "react";
 
@@ -40,7 +39,9 @@ export default function Protected({
 					router.replace(redirectTo);
 				}
 			} catch (e) {
-				// token invalid -> redirect to login
+                console.log(e)
+
+                // token invalid -> redirect to login
 				router.replace(redirectTo);
 			}
 		}

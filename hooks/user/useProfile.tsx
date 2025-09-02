@@ -53,9 +53,11 @@ interface ProductMedia {
 export default function useProfile() {
     const [profile, setProfile] = useState<User>({} as User);
     const {dataUser}= useAuth()
-    const dataDecrypted:DecodedToken  = jwtDecode(dataUser.token)
+    const dataDecrypted:DecodedToken | null  = dataUser.token ? jwtDecode(dataUser.token) : null
+
 
     const getInfoProfile = useCallback( async () => {
+        if(!dataDecrypted) return;
         try {
             const response = await axios.get(`${process.env.NEXT_PUBLIC_URL_BACKEND}/api/nature/profile/getInfoProfile`,{
                 params:{
@@ -70,7 +72,7 @@ export default function useProfile() {
                 console.log('error');
             }
         }
-    },[dataDecrypted.id])
+    },[])
 
     useEffect(() => {
         getInfoProfile();

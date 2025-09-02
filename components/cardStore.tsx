@@ -1,4 +1,3 @@
-import {Product} from "@/hooks/store/useStore"
 import {ProductsProps} from "@/hooks/products/useProducts";
 import React from "react";
 import Image from "next/image";

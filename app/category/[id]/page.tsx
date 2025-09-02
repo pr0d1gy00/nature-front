@@ -2,7 +2,6 @@
 import Button from "@/components/button";
 import Input from "@/components/input";
 import Layout from "@/components/layout";
-import Protected from "@/components/protected";
 import useCategory, { InputKeys } from "@/hooks/category/useCategory";
 import React from "react";
 

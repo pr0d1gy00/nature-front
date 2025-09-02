@@ -8,8 +8,6 @@ import { InputKeys } from "@/hooks/products/useProducts";
 import Button from "@/components/button";
 import useCategory from "@/hooks/category/useCategory";
 import Image from "next/image";
-import Protected from "@/components/protected";
-import { div } from "motion/react-m";
 
 export default function Page() {
 	const {
@@ -194,7 +192,7 @@ export default function Page() {
 														>
 															X
 														</button>
-														<img
+														<Image
 															key={index}
 															src={URL.createObjectURL(image.image)}
 															alt={`Imagen ${

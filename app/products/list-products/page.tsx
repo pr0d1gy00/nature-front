@@ -3,7 +3,7 @@ import Layout from "@/components/layout";
 import React from "react";
 import { motion } from "motion/react";
 import Link from "next/link";
-import useProducts, { InputKeysStock } from "@/hooks/products/useProducts";
+import useProducts from "@/hooks/products/useProducts";
 import {
 	SwipeableList,
 	SwipeableListItem,
@@ -18,6 +18,7 @@ import {
 import Modal from "@/components/modal";
 import Input from "@/components/input";
 import Button from "@/components/button";
+import Image from "next/image";
 
 export interface Column {
 	key: string;
@@ -206,7 +207,7 @@ export default function Page() {
 													key={product.id}
 													className={`grid ${colsClass} bg-[#35384b] text-[#fcf9d9] p-2 items-center font-bold gap-2 border-b`}
 												>
-													<img
+													<Image
 														src={`http://localhost:8000${product.product_media[0]?.url}`}
 														alt={
 															product.name

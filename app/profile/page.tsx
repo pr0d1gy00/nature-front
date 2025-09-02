@@ -2,15 +2,12 @@
 import {Mail, Phone, MapPin} from "lucide-react";
 import {motion} from "motion/react";
 import useProfile from "@/hooks/user/useProfile";
-import Image from "next/image";
 import Layout from "@/components/layout";
 import useOrder from "@/hooks/order/useOrder";
 import ShowDetailsOrderModal from "@/components/showDetailsOrderModal";
 import React from "react";
 import useAuth from "@/hooks/auth/useAuth";
-import {jwtDecode} from "jwt-decode";
-import {DecodedToken} from "@/hooks/layout/useLayout";
-import {decryptId} from "@/helpers/decryptedId";
+
 
 export default function UserProfile() {
     const {profile} = useProfile()
@@ -31,9 +28,8 @@ export default function UserProfile() {
     setSelectedOrderId,
         handleSubmitImageShipment
     } = useOrder();
-    const {dataUser} = useAuth()
-    const dataUserExtractedToken = dataUser.token ? jwtDecode(dataUser.token) as DecodedToken : null;
-    const idDecrypted = dataUserExtractedToken ? decryptId(dataUserExtractedToken.role_id.toString()) : null;
+    const {idDecrypted} = useAuth()
+
     if (!profile) return null
     const getStatusColor = (status: string) => {
         switch (status.toLowerCase()) {

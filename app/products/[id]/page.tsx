@@ -7,6 +7,7 @@ import Input from "@/components/input";
 import { InputKeys } from "@/hooks/products/useProducts";
 import Button from "@/components/button";
 import useCategory from "@/hooks/category/useCategory";
+import Image from "next/image";
 
 export default function Page() {
 	const {
@@ -191,7 +192,7 @@ export default function Page() {
 															>
 																X
 															</button>
-															<img
+															<Image
 																key={index}
 																src={
 																	image && typeof image.image === "string"

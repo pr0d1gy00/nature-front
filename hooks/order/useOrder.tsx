@@ -1,3 +1,4 @@
+'use client'
 import React, {ChangeEvent, FormEvent, useCallback, useEffect, useState} from 'react'
 import useAuth from "@/hooks/auth/useAuth";
 import {jwtDecode} from "jwt-decode";

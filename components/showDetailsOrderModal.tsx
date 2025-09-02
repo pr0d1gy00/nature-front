@@ -185,7 +185,7 @@ export default function ShowDetailsOrderModal({
                                                     >
                                                         X
                                                     </button>
-                                                    <img
+                                                    <Image
                                                         key={index}
                                                         src={
                                                             image && typeof image.image === "string"
@@ -323,7 +323,7 @@ export default function ShowDetailsOrderModal({
                                                     >
                                                         X
                                                     </button>
-                                                    <img
+                                                    <Image
                                                         key={index}
                                                         src={
                                                             image && typeof image.image === "string"

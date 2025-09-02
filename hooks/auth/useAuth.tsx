@@ -8,6 +8,7 @@ import {
     ShowLoadingAlert,
 } from "@/components/alertLoading";
 import {useRouter} from 'next/navigation'
+import {jwtDecode} from "jwt-decode";
 
 interface dataUserProps {
     message: string;
@@ -42,6 +43,8 @@ export default function useAuth() {
             return EMPTY_USER;
         }
     });
+    const dataDecrypted = dataUser.token ? jwtDecode(dataUser.token) : null;
+    const idDecrypted = dataDecrypted ? (dataDecrypted as { id: string }).id : null;
     const [loading, setLoading] = useState(false);
     const inputs = [
         {
@@ -166,6 +169,7 @@ export default function useAuth() {
         handleSubmit,
         loading,
         dataUser,
-        handleLogout
+        handleLogout,
+        idDecrypted
     };
 }

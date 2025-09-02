@@ -1,7 +1,7 @@
 import React from 'react'
 import Image from "next/image";
 import ShipmentsIcon from "@/public/icones/entrega.png";
-import {Product, ProductResponse} from "@/hooks/store/useStore";
+import {ProductResponse} from "@/hooks/store/useStore";
 import {ProductsProps} from "@/hooks/products/useProducts";
 
 interface ViewProductSelectedProps {

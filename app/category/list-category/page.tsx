@@ -13,7 +13,6 @@ import "@sandstreamdev/react-swipeable-list/dist/styles.css";
 import Link from "next/link";
 import React from "react";
 import { motion } from "motion/react";
-import Protected from "@/components/protected";
 
 export default function Page() {
 	const { allCategories, handleDelete, pushToEditPage } =

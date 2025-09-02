@@ -1,6 +1,6 @@
 import React from 'react'
 import Image from "next/image";
-import {Product, ProductResponse} from "@/hooks/store/useStore";
+import { ProductResponse} from "@/hooks/store/useStore";
 
 interface ViewProductSelectedProps {
     dataProductToSeeByUser: ProductResponse
@@ -16,7 +16,7 @@ export default function ProductRelated({dataProductToSeeByUser,handlePushPagePro
                 <div
                     className="max-lg:grid max-md:grid-cols-1 max-lg:grid-cols-2 flex justify-between gap-4">
                     {dataProductToSeeByUser.listProducts.map(
-                        (product, index) => {
+                        (product) => {
                             return (
                                 <div
                                     key={product.id}

@@ -1,6 +1,5 @@
 import React from 'react'
 import {motion} from 'motion/react';
-import { InputConfig } from '@/hooks/registerUser/useRegisterUser';
 
 interface inputsProps extends React.InputHTMLAttributes<HTMLInputElement> {
 	className?: string

@@ -311,7 +311,8 @@ export default function useStore() {
 
         if (
             filters.price.gte === 0 &&
-            filters.price.lte === 0
+            filters.price.lte === 0 &&
+            filters.category.length === 0
         ) {
             return;
         }

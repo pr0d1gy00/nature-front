@@ -90,7 +90,6 @@ export default function useRegisterUser() {
                 headers: {
                     "Content-Type": "application/json",
                     "Authorization": `Bearer ${token}`,
-                    "credentials": "include"
                 }
 
             }

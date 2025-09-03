@@ -23,12 +23,12 @@ export async function middleware(req: NextRequest) {
 	const token = req.cookies.get("token")?.value;
     console.log(token)
 
-    if (!token) {
-		const loginUrl = new URL("/auth", req.url);
-		const r = NextResponse.redirect(loginUrl);
-		r.headers.set('x-middleware-reason', 'no_token');
-		return r;
-	}
+    // if (!token) {
+	// 	const loginUrl = new URL("/auth", req.url);
+	// 	const r = NextResponse.redirect(loginUrl);
+	// 	r.headers.set('x-middleware-reason', 'no_token');
+	// 	return r;
+	// }
 
 
 	try {

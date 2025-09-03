@@ -16,13 +16,13 @@ export default function Page() {
                 animate={{opacity: 1}}
                 exit={{opacity: 0}}
                 transition={{duration: 0.5}}
-                className="max-md:w-[100%] max-md:items-start flex flex-col items-center min-h-screen justify-center h-auto w-full bg-gradient-to-br from-[#fdfee7] via-[#fdfee7] to-[#32384549]"
+                className="max-md:w-[100%] max-md:items-center flex flex-col items-center min-h-screen justify-center h-auto w-full bg-gradient-to-br from-[#fdfee7] via-[#fdfee7] to-[#32384549]"
             >
                 <motion.div
                     initial={{y: -20, opacity: 0}}
                     animate={{y: 0, opacity: 1}}
                     transition={{duration: 0.5}}
-                    className="max-md:w-[90%] max-md:items-start flex flex-col items-start w-[60%] mt-12"
+                    className="max-md:w-[90%] max-md:items-center flex flex-col items-start w-[60%] mt-12"
                 >
                     <h2 className="max-lg:text-6xl text-7xl font-bold text-[#7ed957]">
                         Registrate para <br/>
@@ -49,9 +49,9 @@ export default function Page() {
                     transition={{duration: 0.5, delay: 0.4}}
                     action="POST"
                     onSubmit={handleSubmit}
-                    className="max-md:w-[90%] w-[60%] flex flex-col items-start mt-6 mb-6"
+                    className="max-md:w-[90%] max-md:flex max-md:items-center w-[60%] flex flex-col items-start mt-6 mb-6"
                 >
-                    <div className="max-md:grid max-md:grid-cols-1 grid gap-4 grid-cols-2 w-[100%]">
+                    <div className="max-md:grid max-md:items-center max-md:grid-cols-1 grid gap-4 grid-cols-2 w-[100%]">
 
                         {inputs.map((input, index) => (
                             <Input

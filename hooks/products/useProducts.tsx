@@ -270,7 +270,7 @@ export default function useProducts() {
             formData.append("offert", JSON.stringify(offert));
             formData.append(
                 "id_user",
-                JSON.stringify(decoded?.role_id)
+                decoded!.id as string
             );
             formData.append("categoryId", categoryId);
             media.forEach((m) => {

@@ -38,6 +38,7 @@ export async function middleware(req: NextRequest) {
 				cookie: req.headers.get('cookie') ?? '',
 				'content-type': 'application/json',
 			},
+
 			cache: 'no-store',
 		});
 		const text = await verifyRes.text().catch(() => null);

@@ -10,6 +10,12 @@ const nextConfig: NextConfig = {
         port: '8000',
         pathname: '/uploads/**',
       },
+        {
+            protocol: 'https',
+            hostname: 'nature-back.onrender.com',
+            port: '',
+            pathname: '/uploads/**',
+        },
     ],
   }
 };

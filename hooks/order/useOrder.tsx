@@ -217,6 +217,7 @@ export default function useOrder() {
                     Authorization: `Bearer ${dataUser.token}`
                 }
             });
+            console.log(response)
 
             setSelectedOrder(response.data.orders);
         } catch (error) {

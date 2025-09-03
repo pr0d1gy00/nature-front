@@ -230,7 +230,7 @@ export default function useStore() {
             },
         }));
     };
-    const getListOfCalificationComments = async () => {
+    const getListOfCalificationComments = useCallback(async () => {
         try {
             const response = await axios.get(
                 `${process.env.NEXT_PUBLIC_URL_BACKEND}/api/nature/comments/getAllCalifications`,
@@ -244,7 +244,7 @@ export default function useStore() {
         } catch (error) {
             console.log('e');
         }
-    };
+    }, [token]);
 
     const addToCart = (product: ProductsProps) => {
 
@@ -263,7 +263,7 @@ export default function useStore() {
         localStorage.setItem("cart", JSON.stringify(cart));
         AlertAddToCart('Producto agregado al carrito');
     }
-    const getPriceDolar = async () => {
+    const getPriceDolar =useCallback( async () => {
         try {
             const response = await axios.get(
                 `${process.env.NEXT_PUBLIC_URL_BACKEND}/api/nature/dolar/getPriceDolar`
@@ -272,7 +272,7 @@ export default function useStore() {
         } catch (error) {
             console.error("Error fetching exchange rate:");
         }
-    };
+    }, []);
     const fetchProducts = useCallback(async () => {
         try {
             const response = await axios.get(
@@ -459,7 +459,7 @@ export default function useStore() {
     useEffect(() => {
         fetchProducts();
         getPriceDolar();
-    }, [fetchProducts]);
+    }, [fetchProducts, getPriceDolar]);
 
     useEffect(() => {
         fetchFilter();
@@ -477,7 +477,7 @@ export default function useStore() {
         getPriceDolar();
         getListOfCalificationComments();
         getAllComentsOfProduct();
-    }, [id,fetchProductToShowUser, getAllComentsOfProduct, getListOfCalificationComments]);
+    }, [id,fetchProductToShowUser, getAllComentsOfProduct, getListOfCalificationComments, getPriceDolar]);
 
     useEffect(()=>{
         getProductsByName()

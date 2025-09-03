@@ -2,8 +2,9 @@
 import {ShowErrorAlert} from '@/components/alertError'
 import {ShowSuccessAlert} from '@/components/alertSuccess'
 import axios from 'axios'
-import {useState} from 'react'
+import {useEffect, useState} from 'react'
 import useAuth from '../auth/useAuth'
+import {DismissLoadingAlert, ShowLoadingAlert} from "@/components/alertLoading";
 
 export type InputKeys = 'name' | 'dni' | 'email' | 'password' | 'phone' | 'address';
 
@@ -113,7 +114,13 @@ export default function useRegisterUser() {
             setLoading(false);
         }
     }
-
+    useEffect(() => {
+        if (loading) {
+            ShowLoadingAlert("Obteniendo Producto...");
+        } else {
+            DismissLoadingAlert();
+        }
+    }, [loading]);
     return {
         inputs,
         handleChange,

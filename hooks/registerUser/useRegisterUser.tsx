@@ -116,7 +116,7 @@ export default function useRegisterUser() {
     }
     useEffect(() => {
         if (loading) {
-            ShowLoadingAlert("Obteniendo Producto...");
+            ShowLoadingAlert("Realizando acción...");
         } else {
             DismissLoadingAlert();
         }

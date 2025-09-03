@@ -205,13 +205,15 @@ export default function Page() {
 											>
 												<div
 													key={product.id}
-													className={`grid ${colsClass} bg-[#35384b] text-[#fcf9d9] p-2 items-center font-bold gap-2 border-b`}
+													className={`grid ${colsClass} bg-[#35384b] text-[#fcf9d9] p-2 items-center font-bold gap-2 border-b w-full`}
 												>
 													<Image
-														src={`${process.env.NEXT_PUBLIC_URL_BACKEND}+${product.product_media[0]?.url}`}
+														src={`${process.env.NEXT_PUBLIC_URL_BACKEND}${product.product_media[0]?.url}`}
 														alt={
 															product.name
 														}
+                                                        width={64}
+                                                        height={64}
 														className="w-16 h-16 rounded-2xl"
 													/>
 													<span className="truncate">

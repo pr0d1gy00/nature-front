@@ -1,10 +1,12 @@
-// import { NextResponse } from "next/server";
-// import type { NextRequest } from "next/server";
-//
-// const BACKEND_VERIFY =
-// 	process.env.NEXT_PUBLIC_URL_BACKEND ?? "http://localhost:8000";
-//
-// export async function middleware(req: NextRequest) {
+import { NextResponse } from "next/server";
+import type { NextRequest } from "next/server";
+
+const BACKEND_VERIFY =
+	process.env.NEXT_PUBLIC_URL_BACKEND ?? "http://localhost:8000";
+
+export async function middleware(req: NextRequest) {
+    return NextResponse.next();
+
 // 	const { pathname } = req.nextUrl;
 // 	const PUBLIC = [
 // 		"/auth",
@@ -78,4 +80,4 @@
 // 		"/admin/:path*",
 // 		"/products/:path*",
 // 	],
-// };
+};

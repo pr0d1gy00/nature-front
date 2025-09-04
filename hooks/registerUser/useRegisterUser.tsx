@@ -5,6 +5,7 @@ import axios from 'axios'
 import {useEffect, useState} from 'react'
 import useAuth from '../auth/useAuth'
 import {DismissLoadingAlert, ShowLoadingAlert} from "@/components/alertLoading";
+import {useRouter} from "next/navigation";
 
 export type InputKeys = 'name' | 'dni' | 'email' | 'password' | 'phone' | 'address';
 
@@ -25,6 +26,7 @@ export default function useRegisterUser() {
         phone: "",
         address: ""
     })
+    const router = useRouter()
     const token = dataUser.token || '';
     const [loading, setLoading] = useState(false)
     const inputs: InputConfig[] = [
@@ -96,7 +98,7 @@ export default function useRegisterUser() {
 
             )
             ShowSuccessAlert(response.data.message);
-
+            router.push("/auth")
         } catch (error) {
             if (axios.isAxiosError(error)) {
                 ShowErrorAlert(

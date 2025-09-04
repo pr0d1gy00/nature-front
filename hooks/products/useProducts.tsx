@@ -9,6 +9,7 @@ import {ChangeEvent, FormEvent} from "react";
 import {useParams, useRouter} from "next/navigation";
 import useCategory from "../category/useCategory";
 import Swal from "sweetalert2";
+import {DismissLoadingAlert, ShowLoadingAlert} from "@/components/alertLoading";
 
 export type InputKeys =
     | "name"
@@ -256,6 +257,7 @@ export default function useProducts() {
                 ShowErrorAlert("El stock o el stock mínimo no puede ser negativo.");
                 return;
             }
+            setLoading(true)
             const formData = new FormData();
 
             formData.append("name", product.name);
@@ -336,6 +338,7 @@ export default function useProducts() {
                 ShowErrorAlert("El precio no puede ser negativo.");
                 return;
             }
+            setLoading(true)
             const formData = new FormData();
 
             formData.append("id", idEdit!);
@@ -438,6 +441,8 @@ export default function useProducts() {
                         },
                     }
                 );
+                console.log(response)
+
                 setCategoryId(response.data.product.category_id);
                 setActive(response.data.product.is_active);
                 setOffert(response.data.product.offert);
@@ -542,6 +547,7 @@ export default function useProducts() {
         });
     };
     const fetchProducts = useCallback(async () => {
+        setLoading(true)
         try {
             const response = await axios.get(
                 `${process.env.NEXT_PUBLIC_URL_BACKEND}/api/nature/product/getProducts`,
@@ -560,19 +566,27 @@ export default function useProducts() {
             } else {
                 ShowErrorAlert("Ocurrió un error inesperado");
             }
+        }finally {
+
+            setLoading(false)
         }
     }, [token]);
 
     useEffect(() => {
         if (!id || !token) return;
-        handleGetCategoryById(id.toString());
         getProductById(id.toString());
-    }, [id, token, getProductById, handleGetCategoryById]);
+    }, [id, token, getProductById]);
 
     useEffect(() => {
         fetchProducts();
     }, [refresh, fetchProducts]);
-
+    useEffect(() => {
+        if (loading) {
+            ShowLoadingAlert("Realizando acción...");
+        } else {
+            DismissLoadingAlert();
+        }
+    }, [loading]);
     return {
         inputs,
         product,

@@ -94,14 +94,14 @@ export default function ViewProductSelected({
                         ).toFixed(2)}
                     </p>
                     {dataProductToSeeByUser?.product
-                        .inventory &&
+                        .inventory!.length > 0 &&
                     dataProductToSeeByUser?.product
-                        .inventory.length > 0 ? (
+                        .inventory![0].stock > 0 ? (
                         <p className="mt-2 text-green-600 font-medium">
                             En stock:{" "}
                             {
                                 dataProductToSeeByUser
-                                    ?.product.inventory[0]
+                                    ?.product.inventory![0]
                                     .stock
                             }{" "}
                             unidades
@@ -124,6 +124,7 @@ export default function ViewProductSelected({
                             nacional
                         </p>
                     </div>
+                    { dataProductToSeeByUser.product.inventory!.length > 0 && dataProductToSeeByUser.product.inventory![0].stock > 0 ?
                     <button onClick={() => {
                         const productToAdd: ProductsProps = {
                             ...dataProductToSeeByUser.product,
@@ -139,7 +140,13 @@ export default function ViewProductSelected({
                     }}
                             className="mt-4 w-full h-12 bg-blue-500 text-white py-2 px-4 rounded-md">
                         Agregar al carrito
-                    </button>
+                     </button>
+                        :
+                        <button disabled
+                                className="mt-4 w-full h-12 bg-gray-400 text-white py-2 px-4 rounded-md cursor-not-allowed">
+                            Agotado
+                        </button>
+                    }
                 </div>
             </div>
         </>

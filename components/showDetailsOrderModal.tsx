@@ -324,7 +324,7 @@ export default function ShowDetailsOrderModal({
                                     }
                                 </>
 
-                            ) : (
+                            ) : selectedOrder?.status !== 'cancelado' && (
                                 <div className='w-[90%]'>
                                     <p>Cargar imagenes relaciones al pago</p>
                                     <input type="file" multiple
@@ -358,6 +358,8 @@ export default function ShowDetailsOrderModal({
                                                                         : `/placeholder.png`
                                                             }
                                                             alt={`Imagen ${index + 1}`}
+                                                            width={100}
+                                                            height={100}
                                                             style={{
                                                                 width: "100px",
                                                                 height: "100px",

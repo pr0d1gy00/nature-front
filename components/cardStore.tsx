@@ -42,6 +42,7 @@ export default function CardStore({
                     <p className="text-[#fdfee7] font-light mt-2 truncate">
                         {product.description}
                     </p>
+                    {product.inventory.length > 0 && product.inventory![0].stock > 0 ?
                     <button onClick={(event) =>{
                         event.stopPropagation()
                         handleAddToCart(product)}
@@ -49,6 +50,11 @@ export default function CardStore({
                             className="bg-[#50ff06] text-[#35384b] px-4 py-1 rounded-2xl text-sm mt-2">
                         Agregar al Carrito
                     </button>
+                        :
+                        <p className="text-md text-[#f31815] font-bold mt-2">
+                            Sin stock
+                        </p>
+                    }
                     <p className="text-xl text-white mt-2">
                         $ {product.price} - BS{" "}
                         {(parseFloat(product.price) * priceDolar).toFixed(2)}

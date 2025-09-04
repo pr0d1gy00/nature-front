@@ -6,6 +6,7 @@ import Link from "next/link";
 import Faq, { FAQItem } from "@/components/faq";
 import Products from "@/components/products";
 import { motion } from "motion/react";
+import ContactPage from "@/components/contact";
 
 const faqs: FAQItem[] = [
 	{
@@ -125,6 +126,7 @@ export default function Home() {
 				>
 				<Faq items={faqs} />
 				</motion.div>
+                <ContactPage/>
 			</motion.section>
 		</Layout>
 	);

@@ -314,6 +314,7 @@ export default function useStore() {
             filters.price.lte === 0 &&
             filters.category.length === 0
         ) {
+            await fetchProducts();
             return;
         }
 

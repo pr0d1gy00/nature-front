@@ -38,7 +38,7 @@ export default function Home() {
 
 				className="max-md:flex-col flex items-center justify-center min-h-screen w-full h-full bg-gradient-to-br from-[#fdfee7] via-[#fdfee7] to-[#00000047]"
 				id="home"
-			>v
+			>
 			
 				<motion.div
 					initial={{ x: -50, opacity: 0 }}

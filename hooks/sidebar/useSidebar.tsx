@@ -16,7 +16,6 @@ export default function useSidebar() {
 		{label: 'Productos', icon: ProductsIcon, path: '#products'},
 		{label: 'FAQ', icon: FAQIcon, path: '#help'},
 		{label: 'Contacto', icon: ContactIcon, path: '#contact'},
-		{label: 'Historia', icon: HistoryIcon, path: '/history'},
 	]
 
 	const sidebarOptionsAdmin =[

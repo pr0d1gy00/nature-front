@@ -73,7 +73,7 @@ export default function useRegisterUser() {
     }
     const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
         e.preventDefault()
-        setLoading(true)
+
 
         if (!registerData.name || !registerData.email || !registerData.password || !registerData.phone || !registerData.address) {
             ShowErrorAlert("Por favor, completa todos los campos");
@@ -87,6 +87,7 @@ export default function useRegisterUser() {
             ShowErrorAlert("Por favor, ingresa un correo electrónico válido");
             return;
         }
+        setLoading(true)
         try {
             const response = await axios.post(`${process.env.NEXT_PUBLIC_URL_BACKEND}/api/nature/user/createUser`, registerData, {
                 headers: {

@@ -9,7 +9,6 @@ export function ShowLoadingAlert(message: string) {
 		style: {
 		background: '#7ed957',
 		color: '#35384b',
-
 		},
 		iconTheme: {
 		primary: 'white',

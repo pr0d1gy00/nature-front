@@ -113,6 +113,7 @@ export default function Home() {
 				viewport={{ once: false, amount:0.1 }}
 				transition={{ duration: 0.5, delay: 0.2 }}
 				className="flex flex-col items-center min-h-screen w-full h-auto bg-[#fdfee7]"
+                id="#help"
 			>
 				<h2 className="max-md:text-5xl max-md:text-center text-6xl font-extrabold text-[#35384b] mb-12 break-words mt-16">
 					Preguntas frecuentes

@@ -42,7 +42,7 @@ export default function CommentProductStore({comment, configCalifications}:Comme
                                     cal
                                 ) =>
                                     cal.value ===
-                                    comment.calification.id
+                                    comment.calification.value
                             )
                                 ?.border
                         }`
@@ -54,7 +54,7 @@ export default function CommentProductStore({comment, configCalifications}:Comme
                         configCalifications.find(
                             (cal) =>
                                 cal.value ===
-                                comment.calification.id
+                                comment.calification.value
                         )?.image || ""
                     }
                     alt=""
@@ -65,7 +65,7 @@ export default function CommentProductStore({comment, configCalifications}:Comme
                     {configCalifications.find(
                             (cal) =>
                                 cal.value ===
-                                comment.calification.id
+                                comment.calification.value
                         )?.label ||
                         ""}
                 </p>

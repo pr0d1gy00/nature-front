@@ -47,7 +47,7 @@ export default function LetCommentUser({califications,handleCalificationClick,co
                             }
                             name="calification_id"
                             value={
-                                calification.id
+                                calification.value
                             }
                             onClick={() =>
                                 handleCalificationClick(

@@ -4,7 +4,7 @@ import { motion } from "framer-motion"
 
 export default function ContactPage() {
     return (
-        <section id="contact" className="max-md:w-[90%] min-h-screen w-full bg-gradient-to-br from-[#fdfee7] via-[#fdfee7] to-[#00000047] flex flex-col items-center justify-center px-6 py-12">
+        <section id="contact" className="max-md:w-[100%] min-h-screen w-full bg-gradient-to-br from-[#fdfee7] via-[#fdfee7] to-[#00000047] flex flex-col items-center justify-center px-6 py-12">
 
             {/* Encabezado */}
             <motion.h1

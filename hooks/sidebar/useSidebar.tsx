@@ -13,9 +13,9 @@ export default function useSidebar() {
 	const router = useRouter()
 	const sidebarOptions = [
 		{label: 'Inicio', icon: HomeIcon, path: '/'},
-		{label: 'Productos', icon: ProductsIcon, path: '#products'},
-		{label: 'FAQ', icon: FAQIcon, path: '#help'},
-		{label: 'Contacto', icon: ContactIcon, path: '#contact'},
+		{label: 'Productos', icon: ProductsIcon, path: '/#products'},
+		{label: 'FAQ', icon: FAQIcon, path: '/#help'},
+		{label: 'Contacto', icon: ContactIcon, path: '/#contact'},
 	]
 
 	const sidebarOptionsAdmin =[

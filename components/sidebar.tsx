@@ -40,7 +40,7 @@ export default function Sidebar({ setShowSidebar }: SidebarProps) {
 					<motion.button
 						whileTap={{ scale: 0.95 }}
 						title="store"
-						className="w-full bg-[#fcf9d9] rounded-lg mb-4 flex flex-col items-center gap-2 hover:bg-[#35384b4c] transition-colors p-2"
+						className="w-full bg-[#fcf9b9] rounded-lg mb-4 flex flex-col items-center gap-2 hover:bg-[#35384b4c] transition-colors p-2"
 					>
 						<Image
 							src={StoreIcon}
@@ -126,7 +126,7 @@ export default function Sidebar({ setShowSidebar }: SidebarProps) {
 						<motion.button
 							title="login"
 							type="button"
-							className="w-[100%] bg-[#fcf9d9] rounded-lg mb-4 flex items-center gap-2 hover:bg-[#35384b4c] transition-colors p-2"
+							className="w-[100%] bg-[#fcf9b9] rounded-lg mb-4 flex items-center gap-2 hover:bg-[#35384b4c] transition-colors p-2"
 						>
 							<Image
 								src={LoginIcon}

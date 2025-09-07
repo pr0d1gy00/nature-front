@@ -43,20 +43,20 @@ export default function Home() {
 				<motion.div
 					initial={{ x: -50, opacity: 0 }}
 					whileInView={{ x: 0, opacity: 1 }}
-						className="max-md:w-[90%] py-8 w-[50%] flex flex-col items-end justify-center h-auto"
+						className="max-md:w-[105%] py-8 w-[50%] flex flex-col items-end justify-center h-auto"
 				>
 					<motion.div
 						initial={{ opacity: 0, y: -20 }}
 						whileInView={{ opacity: 1, y: 0 }}
-						className="flex flex-col items-center justify-center w-fit h-[80%]"
+						className="max-md:w-full flex flex-col items-center justify-center w-fit h-[80%]"
 					>
 						<h2 className="max-md:text-5xl mi-serifa text-6xl font-extrabold text-[#7ed957bd] mb-6 w-[80%] break-words">
 							Bienvenido a la experiencia de{" "}
-							<span className="max-md:text-6xl text-[#35384b] text-7xl">
+							<span className="max-md:text-5xl text-[#35384b] text-7xl">
 								Nature{" "}
 							</span>
 							parte importante para tu{" "}
-							<span className="max-md:text-6xl text-[#35384b] text-7xl">
+							<span className="max-md:text-5xl text-[#35384b] text-7xl">
 								estilo de vida
 							</span>
 						</h2>
